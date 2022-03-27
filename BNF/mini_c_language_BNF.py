@@ -125,7 +125,7 @@
               |  <boolean_expression>     # logical operations
 
 
-<boolean_expression> ::= <relational_boolean_expression>   # that compare items eg 2 < 3
+<boolean_expression> ::= <relational_boolean_expression>   # A relational expression is an expression used to compare two operands. eg 2 < 3
                       |  <logical_boolean_expression>      # that make decisions  eg (sunny && windy) || !(rainy)
 
 
@@ -149,5 +149,15 @@
 
 <number>  ::= constant_int
            |  constant_float
+
+<relational_boolean_expression>  ::= <arithmetic_expression> <comparison_sign> <arithmetic_expression>
+
+<comparison_sign>       ::= less_than_sign
+                         |  greater_than_sign
+                         |  equivalent_to_sign
+                         |  inequivalent_to_sign
+                         |  greater_than_or_equal_to_sign
+                         |  less_than_or_equal_to_sign
+
 
 ------------------------- part 2 : end of BNF (productions only) ------------------------
