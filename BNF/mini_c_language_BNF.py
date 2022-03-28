@@ -1,4 +1,4 @@
-------------------------- part 1 : Tokens used and their regex -------------------------------
+------------------------- part 1 : Terminals used and their regex -------------------------------
 #tokens for keywords
   key_word_main = "^main$"
   key_word_int = "^int$"
@@ -48,7 +48,6 @@
   modulus_operator = "\%$"
   assignment_operator= "\=$"
 
-------------------------- end of part 1 : Tokens used and their regex  ------------------------
 ------------------------- end of part 1 : Terminals used and their regex  ------------------------
 
 ------------------------- part 2 : BNF (productions only) -------------------------------
