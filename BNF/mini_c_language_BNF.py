@@ -1,6 +1,5 @@
 ------------------------- part 1 : Terminals used and their regex -------------------------------
 #tokens for keywords
-  key_word_main = "^main$"
   key_word_int = "^int$"
   key_word_float = "^float$"
   key_word_bool = "^bool$"
@@ -13,9 +12,9 @@
 
 
 #tokens for constants
-  constant_int = "(\d+)$"
-  constant_float = "((\d+))(\.)((\d+))$"
-  constant_bool = "^(?i)(true|false)$"
+  constant_int = "^\d+$"                     # integers are unsigned by default.
+  constant_float = "^\d*\.{1}\d+$"
+  constant_bool = "^(true|false|TRUE|FALSE)$"
   constant_identifier ="^[a-zA-Z_][a-zA-Z0-9_]*"
   constant_NULL = "^$"
 
@@ -28,25 +27,24 @@
   greater_than_or_equal_to_sign = "^>=$"
   less_than_or_equal_to_sign = "^<=$"
   logical_NOT_sign = "^!$"
-  logical_OR_sign = "\|\|$"
-  logical_AND_sign = "&&$"
+  logical_OR_sign = "^\|\|$"
+  logical_AND_sign = "^&&$"
 
 #tokens for delimiters
   semi_colon_delimiter = "^;$"
   comma_delimiter      = "^,$"
-  right_rounded_bracket = "\)$"
-  left_rounded_bracket = "\($"
-  left_curly_bracket = "{$"
-  right_curly_bracket = "}$"
+  right_rounded_bracket = "^\)$"
+  left_rounded_bracket = "^\($"
+  left_curly_bracket = "^\{$"
+  right_curly_bracket = "^\}$"
 
 #tokens for mathematical operators
-  add_operator =
-  addition_operator = "\+$"
-  subtraction_operator = "\-$"
-  division_operator = "\/$"
+  addition_operator = "^\+$"
+  subtraction_operator = "^-$"
+  division_operator = "^\/$"
   multiplication_operator = "\*$"
-  modulus_operator = "\%$"
-  assignment_operator= "\=$"
+  modulus_operator = "^%$"
+  assignment_operator= "^=$"
 
 ------------------------- end of part 1 : Terminals used and their regex  ------------------------
 
@@ -168,4 +166,5 @@
                       |   logical_NOT_sign left_rounded_bracket <relational_boolean_expression>  right_rounded_bracket
                       |   constant_bool
                       |   left_rounded_bracket   <intermediate_logic_term>  right_rounded_bracket
+
 ------------------------- part 2 : end of BNF (productions only) ------------------------
