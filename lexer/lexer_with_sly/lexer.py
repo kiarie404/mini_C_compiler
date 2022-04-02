@@ -1,3 +1,8 @@
+# Test code. If the python intepretor tells you that :     src_file = open("Test.c")
+# FileNotFoundError: [Errno 2] No such file or directory: 'Test.c'
+# >> then go to your file explorer, look for lexer.py, run it, go back and try to run code again
+
+
 from sly import Lexer
 
 class CalcLexer(Lexer):
