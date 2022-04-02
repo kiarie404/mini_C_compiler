@@ -1,0 +1,3 @@
+<'INT'> --> 'int'	<'IDENTIFIER'> --> 'sum'	<'LPAREN'> --> '('	<'INT'> --> 'int'	<'IDENTIFIER'> --> 'num1'	<'COMMA'> --> ','	<'INT'> --> 'int'	<'IDENTIFIER'> --> 'num2'	<'RPAREN'> --> ')'	<'LCURLY'> --> '{'	
+<'RETURN'> --> 'return'	<'IDENTIFIER'> --> 'num'	<'PLUS'> --> '+'	<'IDENTIFIER'> --> 'num2'	<'PLUS'> --> '+'	<'FLOAT_CONSTANT'> --> '3.950'	<'TIMES'> --> '*'	<'LPAREN'> --> '('	<'NUMBER'> --> '15'	<'DIVIDE'> --> '/'	<'NUMBER'> --> '3'	<'RPAREN'> --> ')'	<'SCOLON'> --> ';'	
+<'RCURLY'> --> '}'	
