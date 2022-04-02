@@ -1,3 +1,13 @@
-<'INT'> --> 'int'	<'IDENTIFIER'> --> 'sum'	<'LPAREN'> --> '('	<'INT'> --> 'int'	<'IDENTIFIER'> --> 'num1'	<'COMMA'> --> ','	<'INT'> --> 'int'	<'IDENTIFIER'> --> 'num2'	<'RPAREN'> --> ')'	<'LCURLY'> --> '{'	
-<'RETURN'> --> 'return'	<'IDENTIFIER'> --> 'num'	<'PLUS'> --> '+'	<'IDENTIFIER'> --> 'num2'	<'PLUS'> --> '+'	<'FLOAT_CONSTANT'> --> '3.950'	<'TIMES'> --> '*'	<'LPAREN'> --> '('	<'NUMBER'> --> '15'	<'DIVIDE'> --> '/'	<'NUMBER'> --> '3'	<'RPAREN'> --> ')'	<'SCOLON'> --> ';'	
+<'INT_KEYWORD'> --> 'int'	<'IDENTIFIER'> --> 'sum'	<'LPAREN'> --> '('	<'INT_KEYWORD'> --> 'int'	<'IDENTIFIER'> --> 'num1'	<'COMMA'> --> ','	<'INT_KEYWORD'> --> 'int'	<'IDENTIFIER'> --> 'num2'	<'RPAREN'> --> ')'	<'LCURLY'> --> '{'	
+<'BOOL_KEYWORD'> --> 'bool'	<'IDENTIFIER'> --> 'result'	<'ASSIGN'> --> '='	<'BOOL_CONSTANT'> --> 'false'	<'SCOLON'> --> ';'	
+<'BOOL_KEYWORD'> --> 'bool'	<'IDENTIFIER'> --> 'result2'	<'ASSIGN'> --> '='	<'BOOL_CONSTANT'> --> 'TRUE'	<'SCOLON'> --> ';'	
+<'FLOAT_KEYWORD'> --> 'float'	<'IDENTIFIER'> --> 'real'	<'ASSIGN'> --> '='	<'FLOAT_CONSTANT'> --> '5.90'	<'SCOLON'> --> ';'	
+<'VOID_KEYWORD'> --> 'void'	<'IDENTIFIER'> --> 'voider'	<'ERROR'> --> '.\n'	
+
+<'INT_CONSTANT'> --> '3'	<'MODULUS'> --> '%'	<'INT_CONSTANT'> --> '2'	<'ASSIGN'> --> '='	<'INT_CONSTANT'> --> '14'	<'LESS_THAN'> --> '<'	<'INT_CONSTANT'> --> '453'	
+
+<'INT_KEYWORD'> --> 'int'	<'IDENTIFIER'> --> 'weather'	<'ASSIGN'> --> '='	<'LOGICAL_NOT'> --> '!'	<'LPAREN'> --> '('	<'IDENTIFIER'> --> 'windy'	<'LOGICAL_AND'> --> '&&'	<'IDENTIFIER'> --> 'sunny'	<'RPAREN'> --> ')'	<'LOGICAL_OR'> --> '||'	<'LPAREN'> --> '('	<'IDENTIFIER'> --> 'rainy'	<'RPAREN'> --> ')'	
+<'RETURN_KEYWORD'> --> 'return'	<'IDENTIFIER'> --> 'num'	<'PLUS'> --> '+'	<'IDENTIFIER'> --> 'num2'	<'PLUS'> --> '+'	<'FLOAT_CONSTANT'> --> '3.950'	<'TIMES'> --> '*'	<'LPAREN'> --> '('	<'INT_CONSTANT'> --> '15'	<'DIVIDE'> --> '/'	<'INT_CONSTANT'> --> '3'	<'RPAREN'> --> ')'	<'SCOLON'> --> ';'	
+<'TIMES'> --> '*'	<'IDENTIFIER'> --> 'r45'	
+<'BREAK'> --> 'break'	
 <'RCURLY'> --> '}'	
