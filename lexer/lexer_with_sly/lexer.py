@@ -1,14 +1,18 @@
 # Test code. If the python intepretor tells you that :     src_file = open("Test.c")
 # FileNotFoundError: [Errno 2] No such file or directory: 'Test.c'
-# >> then go to your file explorer, look for lexer.py, run it, go back and try to run code again
+# >> then go to your file explorer, look for lexer.py, run it by double clicking it, look at the the Lexer_Output file.... viola!! 
 
 
 from sly import Lexer
 
 class CalcLexer(Lexer):
-    tokens = { IDENTIFIER, RETURN, VOID, BOOL, INT, CHAR, IF, ELSE, WHILE, FLOAT_CONSTANT, NUMBER,
-               PLUS, MINUS, TIMES, MODULUS,DIVIDE, EQUIVALENCE, ASSIGN, LE, LT, GE,
-               GT, NE, LPAREN, RPAREN, LSQUARE, RSQUARE, LCURLY, RCURLY, SCOLON, COMMA}
+    tokens = { IDENTIFIER, RETURN_KEYWORD, VOID_KEYWORD, BOOL_KEYWORD, FLOAT_KEYWORD, INT_KEYWORD,
+               IF, ELSE, WHILE, BREAK,
+               FLOAT_CONSTANT, INT_CONSTANT, BOOL_CONSTANT,
+               PLUS, MINUS, TIMES, MODULUS, DIVIDE, ASSIGN,
+               EQUIVALENT_TO, LESS_OR_EQUAL, LESS_THAN, GREATER_OR_EQUAL, GREATER_THAN, INEQUIVALENT_TO,
+               LOGICAL_NOT, LOGICAL_OR, LOGICAL_AND,
+               LPAREN, RPAREN, LCURLY, RCURLY, SCOLON, COMMA}
 
     # String containing ignored characters between tokens
     ignore = '\t'
@@ -16,23 +20,25 @@ class CalcLexer(Lexer):
 
     # Regular expression rules for tokens
     FLOAT_CONSTANT = r'\d*\.{1}\d+'
-    NUMBER  = r'\d+'
+    INT_CONSTANT  = r'\d+'
+    BOOL_CONSTANT = r'(true|TRUE|false|FALSE)'
     PLUS    = r'\+'
     MINUS   = r'-'
     TIMES   = r'\*'
     MODULUS = r'%'
     DIVIDE  = r'/'
-    EQUIVALENCE = r'=='
     ASSIGN  = r'='
-    LE = r'<='
-    LT = r'<'
-    GE = r'>='
-    GT = r'>'
-    NE = r'!='
+    EQUIVALENT_TO = r'=='
+    LESS_OR_EQUAL = r'<='
+    LESS_THAN = r'<'
+    GREATER_OR_EQUAL = r'>='
+    GREATER_THAN = r'>'
+    INEQUIVALENT_TO = r'!='
+    LOGICAL_NOT = r'!'
+    LOGICAL_OR = r'\|\|'
+    LOGICAL_AND = r'&&'
     LPAREN  = r'\('
     RPAREN  = r'\)'
-    LSQUARE = r'\['
-    RSQUARE = r'\]'
     LCURLY = r'\{'
     RCURLY = r'\}'
     SCOLON = ';'
@@ -40,14 +46,15 @@ class CalcLexer(Lexer):
 
     # Tokens for keywords
     IDENTIFIER = r'[a-zA-Z_][a-zA-Z0-9_]*'
-    IDENTIFIER['return'] = RETURN
-    IDENTIFIER['void'] = VOID
-    IDENTIFIER['bool'] = BOOL
-    IDENTIFIER['int'] = INT
-    IDENTIFIER['char'] = CHAR
+    IDENTIFIER['return'] = RETURN_KEYWORD
+    IDENTIFIER['void'] = VOID_KEYWORD
+    IDENTIFIER['bool'] = BOOL_KEYWORD
+    IDENTIFIER['float'] = FLOAT_KEYWORD
+    IDENTIFIER['int'] = INT_KEYWORD
     IDENTIFIER['if'] = IF
     IDENTIFIER['else'] = ELSE
     IDENTIFIER['while'] = WHILE
+    IDENTIFIER['break'] = BREAK
 
     # Line number tracking
     @_(r'\n+')
