@@ -6,7 +6,7 @@ int sum(int num1, int num2){
 
   3%2=14 < 453
 
-  int weather = !(windy && sunny) || (rainy) 
+  int weather = !(windy && sunny) || (rainy) // this is a comment
   return num + num2 + 3.950 * (15 / 3);
   *r45
   break

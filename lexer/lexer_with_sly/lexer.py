@@ -1,6 +1,6 @@
 # Test code. If the python intepretor tells you that :     src_file = open("Test.c")
 # FileNotFoundError: [Errno 2] No such file or directory: 'Test.c'
-# >> then go to your file explorer, look for lexer.py, run it by double clicking it, look at the the Lexer_Output file.... viola!! 
+# >> then go to your file explorer, look for lexer.py, run it by double clicking it, look at the the Lexer_Output file.... viola!!
 
 
 from sly import Lexer
@@ -17,6 +17,7 @@ class CalcLexer(Lexer):
     # String containing ignored characters between tokens
     ignore = '\t'
     ignore_whitespace = '\s+'
+    allow_comments = '\/\/.'
 
     # Regular expression rules for tokens
     FLOAT_CONSTANT = r'\d*\.{1}\d+'
