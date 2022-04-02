@@ -16,7 +16,6 @@
   constant_float = "^\d*\.{1}\d+$"
   constant_bool = "^(true|false|TRUE|FALSE)$"
   constant_identifier ="^[a-zA-Z_][a-zA-Z0-9_]*"
-  constant_NULL = "^$"
 
 
 #tokens for logical signs
