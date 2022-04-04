@@ -115,8 +115,8 @@
 
 <break_stmt>  ::= key_word_break semi_colon_delimiter
 
-<if_else_variant_stmt>  ::= key_word_if left_rounded_bracket <expression> right_rounded_bracket <compound_statement>
-                         |  key_word_if left_rounded_bracket <expression> right_rounded_bracket <compound_statement> key_word_else <compound_statement>
+<if_else_variant_stmt>  ::= key_word_if left_rounded_bracket <boolean_expression> right_rounded_bracket <compound_statement>
+                         |  key_word_if left_rounded_bracket <boolean_expression> right_rounded_bracket <compound_statement> key_word_else <compound_statement>
 
 <expression> ::= <arithmetic_expression>  # includes both floats and int operations . A number is a number! ... whether a float or int.
               |  <boolean_expression>     # logical operations
