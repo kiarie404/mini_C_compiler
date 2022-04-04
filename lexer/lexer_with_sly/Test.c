@@ -1,3 +1,6 @@
+// showing how functions are declared
+// showing a finction with mutiple parameters
+// showing a function that returns a float
 int sum(int num1, int num2){
   bool result = false;
   bool result2 = TRUE;
@@ -11,3 +14,14 @@ int sum(int num1, int num2){
   *r45
   break
 }
+
+// showing how functions are declared
+// showing a finction wch accepts null character
+int laugh (){
+  2 + 3
+    // showing bool declaration
+    // showing relational boolean expression
+  bool result = (2<3)
+}
+
+// 
