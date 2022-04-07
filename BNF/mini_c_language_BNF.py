@@ -88,6 +88,7 @@
   	            | <compound_statement>
                 | <iteration_statement>
   	            | <jump_statement>
+                | <local_decls>
 
 
 <expression_statement> ::= <expression> semi_colon_delimiter
@@ -98,7 +99,7 @@
 <iteration_statement> ::= key_word_while  left_rounded_bracket <boolean_expression> right_rounded_bracket <compound_statement>
 
 
-<compound_statement> ::= left_curly_bracket <local_decls> <stmt_list> right_curly_bracket
+<compound_statement> ::= left_curly_bracket <stmt_list> right_curly_bracket
 
 
 <local_decls> ::= <local_decl> <local_decls>
