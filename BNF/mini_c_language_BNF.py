@@ -68,9 +68,9 @@
       	                | key_word_float
 
 <function_definition> ::= <type_specifier> <identifier> left_rounded_bracket <function_parameters> right_rounded_bracket <compound_statement>
+                        | <type_specifier> <identifier> left_rounded_bracket  right_rounded_bracket <compound_statement>   # made function accept NULL as a parameter safely
 
 <function_parameters> ::= <parameter_list>
-    	| constant_NULL
 
 <parameter_list> ::= <parameter> comma_delimiter <parameter_list>
         	| <parameter>
