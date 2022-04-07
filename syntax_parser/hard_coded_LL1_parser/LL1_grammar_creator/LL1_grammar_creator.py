@@ -20,6 +20,11 @@ class Production:
         self.left_portion = left_portion
         self.right_portion = right_portion
 
+class Production_left_portion:
+    def __init__(self, some_non_terminal):
+        self.non_terminal = some_non_terminal
+
+
 # a production has a right side.
 # that right side might contain several mini-stmts seperated by OR operands
 # hence we store these many productions in a list.
@@ -48,6 +53,15 @@ class Statement:
         self.string_of_terminals_and_non_terminals.append(some_term)
 
 
+def display_production(production):
+    print(production.left_portion.non_terminal.name)
+    print(" --> ")
+    for stmt in production.right_portion.statements:
+        for element in stmt.string_of_terminals_and_non_terminals:
+            if (type(element) == Terminal_object):
+                print(element.name)
+            if (type(element) == Non_terminal_object):
+                print("<", element.name , ">")
 
 
 ##########################  testing if we can safely store productions ####################
@@ -58,3 +72,11 @@ T1  = Terminal_object("constant_identifier")
 
 stmt_1 = Statement()
 stmt_1.string_of_terminals_and_non_terminals.append(T1)
+
+RP = Production_right_portion()
+RP.statements.append(stmt_1)
+
+LP = Production_left_portion(NT1)
+
+P = Production(LP, RP)
+display_production(P)
