@@ -78,7 +78,7 @@
 <parameter> ::= <type_specifier> <identifier>
 
 <stmt_list> ::= <stmt> <stmt_list>
-       	| constant_NULL
+       	| <stmt>
 
 <stmt>   ::= <if_else_variant_stmt>
           |  <non_if_else_variant_stmt>
@@ -95,14 +95,14 @@
 
 
 
-<iteration_statement> ::= key_word_while  left_rounded_bracket <expression> right_rounded_bracket <compound_statement>
+<iteration_statement> ::= key_word_while  left_rounded_bracket <boolean_expression> right_rounded_bracket <compound_statement>
 
 
 <compound_statement> ::= left_curly_bracket <local_decls> <stmt_list> right_curly_bracket
 
 
 <local_decls> ::= <local_decl> <local_decls>
-         	| constant_NULL
+         	| <local_decl>
 
 <local_decl> ::= <type_specifier> <identifier> semi_colon_delimiter
                | <type_specifier> <identifier> assignment_operator <expression> ;
