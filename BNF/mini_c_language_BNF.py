@@ -106,7 +106,7 @@
          	| <local_decl>
 
 <local_decl> ::= <type_specifier> <identifier> semi_colon_delimiter
-               | <type_specifier> <identifier> assignment_operator <expression> ;
+               | <type_specifier> <identifier> assignment_operator <expression> semi_colon_delimiter
 
 <jump_statement> ::= <return_stmt>
         	         | <break_stmt>
