@@ -120,18 +120,16 @@ if __name__ == '__main__':
             elif (count == 1 and token.type == "ARROW"):
                 # if we meet the arrow, we just ignore it
                 # this also means that , we are meeting our first STMT for our production.
-                # so we create an empty STMT object and append it to our production.statements
-                # this means our current_statement_index will increase.
+                # this means our current_statement_index will increase to 0.
                 # this DOES NOT mean our current_STMT_index will also increase.
-                first_STMT = [] # it should contain Units but it is currently empty...
-                array_of_productions[current_production_index].statements.append(first_STMT)
-
                 current_statement_index = current_statement_index + 1
 
 
             elif (count > 1 ):
-                # under this option , we will find both terminals and non_terminals
-                # crete an instance of the 'Unit' class
+                # under this option , we will find both terminals and non_terminals which in this case are inclusively called - "Units"
+                #units are strored in STMT.string_of_units[] array.
+                #so we create an empty STMT.string_of_units[] array.
+                # crete an empty instance of the 'Unit' class
                 temporary_unit = Unit(token.type, token.value)
                 # append it to the current STMT of the current production .
                 array_of_productions[current_production_index].statements[current_statement_index].append(temporary_unit)
