@@ -59,10 +59,11 @@ if __name__ == '__main__':
             # objects of type STMT are arrays that contain Unit class objects
             # else we wont be able to print self.statements as a whole
             # so we crete a copy array.
-            copy_of_self_statements = self.statements
+            copy_of_self_statements = []
             # we convert each of the arrays components into dicts, since the compiler cant do this implicitly.
-            for element in copy_of_self_statements:
-                element = element.as_dict()
+            for element in self.statements:
+                print(element)
+                copy_of_self_statements.append(element.as_dict())
 
             return { "first_non_terminal" : self.left_non_terminal.as_dict(),
                       "statements" : copy_of_self_statements
@@ -118,20 +119,22 @@ if __name__ == '__main__':
 
             elif (count == 1 and token.type == "ARROW"):
                 # if we meet the arrow, we just ignore it
-                # this also means that , we are meeting our first statement for our production.
-                # so we create an empthy statement in our production
-                current_statement_list = [] # it should contain STMTs but it is currently empty...
-                array_of_productions[current_production_index].statements.append(current_statement_list)
-                current_statement_index = current_statement_index + 1
+                # this also means that , we are meeting our first STMT for our production.
+                # so we create an empty STMT object and append it to our production.statements
+                # this means our current_statement_index will increase.
+                # this DOES NOT mean our current_STMT_index will also increase.
+                first_STMT = [] # it should contain Units but it is currently empty...
+                array_of_productions[current_production_index].statements.append(first_STMT)
 
+                current_statement_index = current_statement_index + 1
 
 
             elif (count > 1 ):
                 # under this option , we will find both terminals and non_terminals
                 # crete an instance of the 'Unit' class
                 temporary_unit = Unit(token.type, token.value)
-                # append it to the current STMT of the current production.
-                array_of_productions[current_production_index].statements.append(temporary_unit)
+                # append it to the current STMT of the current production .
+                array_of_productions[current_production_index].statements[current_statement_index].append(temporary_unit)
 
             elif (count == 0 and token.type == "OR"):
                 # if the first term is an OR sign, It means that we are handling the same old production.
