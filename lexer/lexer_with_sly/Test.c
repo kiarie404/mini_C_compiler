@@ -1,27 +1,36 @@
 // showing how functions are declared
-// showing a finction with mutiple parameters
-// showing a function that returns a float
-int sum(int num1, int num2){
-  bool result = false;
-  bool result2 = TRUE;
-  float real = 5.90;
-  void voider.
+// showing a function with mutiple parameters
+int do_stuff(int x, float y){
 
-  3%2=14 < 453
+  // showing declarations
+  int an_int = 34;
+  float a_float = 34.78;
+  bool a_bool = true;
 
-  int weather = !(windy && sunny) || (rainy) // this is a comment
-  return num + num2 + 3.950 * (15 / 3);
-  *r45
-  break
+  // showing arithmetic capability
+  float some_value = an_int * a_float + (32 % 8) / 10.9;
+  float another_value = some_value = 10;
+
+  // boolean operations
+    // relational boolean operations
+      bool comparison = 2 < 4 ; // returns true
+      bool comparison2 = 2 > an_int ; // false
+
+    // logical boolean operations
+      bool comparison3 = comparison && comparison2
+      bool comparison4 = (comparison && comparison2) || !(2 == 3)
+
+   // demonstrating loops
+   int count = 2;
+   int num = 12;
+   while(count <= num){ // While loop - Looping
+    // simple if stmt.
+      if (count == num){ break; }  // demonstrating break stmt
+		// If-else statement
+		if((num % count) == 0) { // Arithmetic operation and comparison
+			return false; //Use of boolean
+		} else {
+			count++; // Arithmetic operation
+		}
+	}
 }
-
-// showing how functions are declared
-// showing a finction wch accepts null character
-int laugh (){
-  2 + 3
-    // showing bool declaration
-    // showing relational boolean expression
-  bool result = (2<3)
-}
-
-// 
