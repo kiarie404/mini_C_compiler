@@ -17,7 +17,7 @@ class CalcLexer(Lexer):
     # String containing ignored characters between tokens
     ignore = '\t'
     ignore_whitespace = '\s+'
-    ignore_comments = '\/\/.'
+    ignore_comment = r'\/\/.*'  # meant to ignore comments
 
     # Regular expression rules for tokens
     FLOAT_CONSTANT = r'\d*\.{1}\d+'
