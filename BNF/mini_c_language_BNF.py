@@ -12,8 +12,8 @@
 
 
 #tokens for constants
-  constant_int = "^\d+$"                     # integers are unsigned by default.
-  constant_float = "^\d*\.{1}\d+$"
+  constant_int = "^[\+\-]{0,1}\d+$"             # integers are unsigned by default.
+  constant_float = "^[\+\-]{0,1}\d+\.{1}\d+$"
   constant_bool = "^(true|false|TRUE|FALSE)$"
   constant_identifier ="^[a-zA-Z_][a-zA-Z0-9_]*"
 
