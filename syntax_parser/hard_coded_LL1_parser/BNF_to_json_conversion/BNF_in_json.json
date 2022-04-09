@@ -1,0 +1,17 @@
+{"productions": [
+    {
+      "left_non_terminal" : {"type" : "non_terminal", "value" : "S"},
+      "right_side_stmts"  : [
+        [{"type" : "non_terminal", "value" : "A"}, {"type" : "terminal", "value" : "b"}],
+        [{"type" : "non_terminal", "value" : "A"}, {"type" : "terminal", "value" : "c"}]
+      ]
+    },
+
+    {
+      "left_non_terminal" : {"type" : "non_terminal", "value" : "A"},
+      "right_side_stmts"  : [
+        [{"type" : "terminal", "value" : "a"}]
+      ]
+    }
+  ]
+}
