@@ -93,7 +93,7 @@ class CalcParser(Parser):
         )
 
     def __init__(self):
-        self.names = { }  # this is where we store variables in the form "variable_name" : "2" where 2 can be a NUMBer or an expression
+        self.identifiers = { }  # this is where we store variables in the form "variable_name" : "2" where 2 can be a NUMBer or an expression
 
     # incase of SHIFT/REDUCE error , sly by default opts to shift.
     # To resolve ambiguity, especially in expression grammars,
@@ -120,7 +120,7 @@ class CalcParser(Parser):
     #   return p.expr0 + p.expr1
     @_('NAME ASSIGN expr')
     def statement(self, p):
-        self.names[p.NAME] = p.expr  # create a new instance of "name" : expr in the class CalcParser
+        self.identifiers[p.NAME] = p.expr  # create a new instance of "name" : expr in the class CalcParser
                                      # this function returns nothing, because it has no-one to report to
 
     @_('expr')
@@ -165,7 +165,7 @@ class CalcParser(Parser):
     @_('NAME')
     def expr(self, p):
         try:
-            return self.names[p.NAME]  # makes it that, the value represented by the NAME variable is returned.
+            return self.identifiers[p.NAME]  # makes it that, the value represented by the NAME variable is returned.
                                        # for example : if NAME = 2, then 2 will be returned
                                        # from here on , the expr -> NAME is same as expr = 2
         except LookupError:
