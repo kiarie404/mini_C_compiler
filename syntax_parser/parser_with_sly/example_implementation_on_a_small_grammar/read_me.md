@@ -10,6 +10,6 @@ _________________________ FILES _________________________
 - grammar.md
 - read_me.md
 - test_parser.py - outputs the syntax tree in the form of a python dictionary
-                 - outputs a json file called - syntax_tree_representation
-                 - This is because a json file can be converted to a visual presentation here : https://vanya.jp.net/vtree/
-                    - 
+
+                 -It also outputs a json file called - syntax_tree_representation
+                    -This is because a json file can be converted to a visual presentation here : https://vanya.jp.net/vtree/
