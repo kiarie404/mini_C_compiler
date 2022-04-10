@@ -13,6 +13,7 @@
 # -----      kiarie404
 # -----------------------------------------------------------------------------
 
+import json
 from sly import Lexer, Parser
 
 class CalcLexer(Lexer):
@@ -94,6 +95,12 @@ class CalcParser(Parser):
         print(p.expr)            # prints expr part of the statement.
                                  # it ignores the NAME even if the name was defined
                                  # this function returns nothing, because it has no-one to report to
+        # test : we print the json file...
+        json_pretty_output = json.dumps(p.expr, indent=2)
+        print(json_pretty_output)
+        # now we write that tree as a json file.
+        with open("syntax_tree_representation.json", "w") as output_file:
+            json.dump(p.expr, output_file)
 
     @_('expr PLUS expr')
     def expr(self, p):
