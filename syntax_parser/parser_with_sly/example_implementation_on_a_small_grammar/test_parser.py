@@ -104,28 +104,28 @@ class CalcParser(Parser):
 
     @_('expr PLUS expr')
     def expr(self, p):
-        return ('addition_expression', p[1], p.expr0, p.expr1)
+        return { 'addition_expression' : (p.expr0, p[1], p.expr1)}
 
     @_('expr MINUS expr')
     def expr(self, p):
-        return ('subtraction_expression', p[1], p.expr0, p.expr1)
+        return { 'subtraction_expression' : (p.expr0, p[1], p.expr1)}
 
 
     @_('expr TIMES expr')
     def expr(self, p):
-        return ('multiplication_expression', p[1], p.expr0, p.expr1)
+        return { 'multiplication_expression' : (p.expr0, p[1], p.expr1)}
 
     @_('expr DIVIDE expr')
     def expr(self, p):
-        return ('division_expression', p[1], p.expr0, p.expr1)
+        return { 'division_expression' : (p.expr0, p[1], p.expr1)}
 
     @_('LPAREN expr RPAREN')
     def expr(self, p):
-        return ('group_expression', p[1])
+        return { 'group_expression' : (p[1])}
 
     @_('NUMBER')
     def expr(self, p):
-        return ('number_value',p.NUMBER)
+        return { 'number_value' : p.NUMBER}
 
 
 
