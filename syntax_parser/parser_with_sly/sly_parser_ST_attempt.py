@@ -59,7 +59,7 @@ class CalcParser(Parser):
         )
 
     def __init__(self):
-        self.names = { }
+        self.names = { }  # this is where we store variables in the form "variable_name" : "2" where 2 can be a NUMBer or an expression
 
     # incase of SHIFT/REDUCE error , sly by default opts to shift.
     # To resolve ambiguity, especially in expression grammars,
@@ -86,11 +86,14 @@ class CalcParser(Parser):
     #   return p.expr0 + p.expr1
     @_('NAME ASSIGN expr')
     def statement(self, p):
-        self.names[p.NAME] = p.expr
+        self.names[p.NAME] = p.expr  # create a new instance of "name" : expr in the class CalcParser
+                                     # this function returns nothing, because it has no-one to report to
 
     @_('expr')
     def statement(self, p):
-        print(p.expr)
+        print(p.expr)            # prints expr part of the statement.
+                                 # it ignores the NAME even if the name was defined
+                                 # this function returns nothing, because it has no-one to report to
 
     @_('expr PLUS expr')
     def expr(self, p):
