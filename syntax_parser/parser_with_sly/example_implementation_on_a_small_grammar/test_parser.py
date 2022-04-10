@@ -125,7 +125,9 @@ class CalcParser(Parser):
     @_('NAME')
     def expr(self, p):
         try:
-            return self.names[p.NAME]
+            return self.names[p.NAME]  # makes it that, the value represented by the NAME variable is returned.
+                                       # for example : if NAME = 2, then 2 will be returned
+                                       # from here on , the expr -> NAME is same as expr = 2
         except LookupError:
             print("Undefined name '%s'" % p.NAME)
             return 0
