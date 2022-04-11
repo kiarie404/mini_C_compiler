@@ -1,4 +1,17 @@
-
+# -----------------------------------------------------------------------------
+# calc.py
+# Ok, team ... people
+# Am having a hard time seperating the lexer and Parser into different files.
+# I have tried using json files to transfer data between the 2 modules, And I ended
+# up shooting myself in the foot--- a couple of times --- deliberately ----
+#
+# As much as modularity == good design  , We have to take this shot.
+# At least the code structure is modest
+#
+# Good luck people, in modifying the file.
+# Hope the code structure is clear
+# -----      kiarie404
+# -----------------------------------------------------------------------------
 
 import json
 from sly import Lexer, Parser
@@ -105,11 +118,7 @@ class CalcParser(Parser):
     # @_('expr PLUS expr')
     # def expr(self, p):
     #   return p.expr0 + p.expr1
-    @_('NAME ASSIGN expr')
-    def statement(self, p):
-        self.identifiers[p.NAME] = p.expr  # create a new instance of "name" : expr in the class CalcParser
-                                     # this function returns nothing, because it has no-one to report to
-
+    #
     @_('command_list')
     def program(self, p):
         print(p.command_list)            # prints command_list part of the statement.
@@ -137,59 +146,72 @@ class CalcParser(Parser):
     def command(self, p):
         return { 'function definition' : (p.function_definition)}
 
-    @_('type_specifier identifier SCOLON')
+    @_('type_specifier IDENTIFIER_CONST SCOLON')
     def variable_declaration(self, p):
-        return { 'simple variable declaration' : (p.type_specifier, p.identifier, p[2])}
+        # store the undefined variable in our variable store.
+        # But with a NULL value associated with it
+        self.identifiers[p.IDENTIFIER_CONST] = None
+        return { 'simple variable declaration' : (p.type_specifier, p.IDENTIFIER_CONST, p.SCOLON)}
 
-    @_('type_specifier identifier ASSIGN expression SCOLON')
+    @_('type_specifier IDENTIFIER_CONST ASSIGN expression SCOLON')
     def variable_declaration(self, p):
-        return { 'variable definition' : (p.type_specifier, p.identifier, p[2], p.expression, p.SCOLON)}
-
-    @_('IDENTIFIER_CONST')
-    def identifier(self, p):
-        try:
-            return self.identifiers[p.IDENTIFIER_CONST]  # makes it that, the value represented by the IDENTIFIER_CONST variable is returned.
-                                       # for example : if IDENTIFIER_CONST = 2, then 2 will be returned
-                                       # from here on , the identifier -> IDENTIFIER_CONST is same as identifier = 2
-        except LookupError:
-            print("Undefined name '%s'" % p.IDENTIFIER_CONST)
-            return 0
+        self.identifiers[p.IDENTIFIER_CONST] = p.expression  # create a new instance of "name" : expr in the class CalcParser
+        return { 'variable definition' : (p.type_specifier, p.IDENTIFIER_CONST, p.ASSIGN, p.expression, p.SCOLON)}
 
     @_('VOID_KEYWORD',
        'BOOL_KEYWORD',
        'INT_KEYWORD',
        'FLOAT_KEYWORD')
     def type_specifier(self, p):
-        return { 'type specifier' : p.[0]}
+        return { 'type' : p[0]}
+
+    @_('type_specifier IDENTIFIER_CONST LPAREN function_parameters RPAREN compound_statement')
+    def function_definition(self, p):
+        return { 'function_definition' : (p.type_specifier, p.IDENTIFIER_CONST, p.LPAREN, p.function_parameters, p.RPAREN, p.compound_statement)}
+
+    @_('type_specifier IDENTIFIER_CONST LPAREN RPAREN compound_statement')
+    def function_definition(self, p):
+        return { 'function_definition' : (p.type_specifier, p.IDENTIFIER_CONST, p.LPAREN, p.RPAREN, p.compound_statement)}
+
+    @_('parameter_list')
+    def function_parameters(self, p):
+        return { 'function_parameters' : (p.parameter_list)}
+
+    @_('parameter COMMA parameter_list')
+    def parameter_list(self, p):
+        return { 'parameter_list' : (p.parameter, p.COMMA, p.parameter_list)}
+
+    @_('parameter')
+    def parameter_list(self, p):
+        return { 'parameter' : (p.parameter)}
+
+    @_('type_specifier IDENTIFIER_CONST')
+    def parameter(self, p):
+        return { type_specifier['type'] : p.IDENTIFIER_CONST }  # smth like { int : x }
+
+    @_('stmt stmt_list')
+    def stmt_list(self, p):
+        return { 'statements' : (p.stmt, p.stmt_list)}
+
+    @_('stmt')
+    def stmt_list(self, p):
+        return { 'statement' : p.stmt }
+
+    @_('if_else_variant_stmt')
+    def stmt(self, p):
+        return { 'conditional statement' : p.if_else_variant_stmt }
+
+    @_('non_if_else_variant_stmt')
+    def stmt(self, p):
+        return { 'non conditional statement' : p.non_if_else_variant_stmt }
+
+    @_('expression_statement')
+    def non_if_else_variant_stmt(self, p):
+        return { 'full expression statement' : p.expression_statement }
+
+    
 
 
-    @_('expr TIMES expr')
-    def expr(self, p):
-        return { 'multiplication_expression' : (p.expr0, p[1], p.expr1)}
-
-    @_('expr DIVIDE expr')
-    def expr(self, p):
-        return { 'division_expression' : (p.expr0, p[1], p.expr1)}
-
-    @_('LPAREN expr RPAREN')
-    def expr(self, p):
-        return { 'group_expression' : (p[1])}
-
-    @_('NUMBER')
-    def expr(self, p):
-        return { 'number_value' : p.NUMBER}
-
-
-
-    @_('NAME')
-    def expr(self, p):
-        try:
-            return self.identifiers[p.NAME]  # makes it that, the value represented by the NAME variable is returned.
-                                       # for example : if NAME = 2, then 2 will be returned
-                                       # from here on , the expr -> NAME is same as expr = 2
-        except LookupError:
-            print("Undefined name '%s'" % p.NAME)
-            return 0
 
 if __name__ == '__main__':
     lexer = CalcLexer()
