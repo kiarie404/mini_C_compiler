@@ -94,7 +94,7 @@ class CalcParser(Parser):
 
     def __init__(self):
         self.identifiers = { }  # this is where we store variables in the form "variable_name" : "2" where 2 can be a NUMBer or an expression
-
+        self.local_identifiers = { }
     # incase of SHIFT/REDUCE error , sly by default opts to shift.
     # To resolve ambiguity, especially in expression grammars,
     # SLY allows individual tokens to be assigned a precedence level and associativity as shown above... problem solved... How?
@@ -151,7 +151,7 @@ class CalcParser(Parser):
         # store the undefined variable in our variable store.
         # But with a NULL value associated with it
         self.identifiers[p.IDENTIFIER_CONST] = None
-        return { 'simple variable declaration' : (p.type_specifier, p.IDENTIFIER_CONST, p.SCOLON)}
+        return { 'global variable declaration' : (p.type_specifier, p.IDENTIFIER_CONST, p.SCOLON)}
 
     @_('type_specifier IDENTIFIER_CONST ASSIGN expression SCOLON')
     def variable_declaration(self, p):
@@ -209,7 +209,51 @@ class CalcParser(Parser):
     def non_if_else_variant_stmt(self, p):
         return { 'full expression statement' : p.expression_statement }
 
-    
+    @_('compound_statement')
+    def non_if_else_variant_stmt(self, p):
+        return { 'compound_statement' : p.compound_statement }
+
+    @_('iteration_statement')
+    def non_if_else_variant_stmt(self, p):
+        return { 'iteration_statement' : p.iteration_statement }
+
+    @_('jump_statement')
+    def non_if_else_variant_stmt(self, p):
+        return { 'jump_statement' : p.jump_statement }
+
+    @_('local_decl')
+    def non_if_else_variant_stmt(self, p):
+        return { 'local_decl' : p.local_decl }
+
+    @_('expression SCOLON')
+    def expression_statement(self, p):
+        return (p.expression, p.SCOLON)   # careful
+
+    @_('SCOLON')
+    def expression_statement(self, p):
+        return (p.SCOLON)   # careful
+
+    @_('WHILE LPAREN boolean_expression RPAREN compound_statement')
+    def iteration_statement(self, p):
+        return { 'iteration_statement' : (p.WHILE, p.LPAREN, p.boolean_expression, p.RPAREN, p.compound_statement)}
+
+    @_('LCURLY stmt_list RCURLY')
+    def compound_statement(self, p):
+        return { 'compound_statement' : (p.LCURLY, p.stmt_list, p.RCURLY)}
+
+    @_('type_specifier IDENTIFIER_CONST SCOLON')
+    def local_decl(self, p):
+        # store the undefined variable in our variable store for local declarations.
+        # But with a NULL value associated with it
+        self.local_identifiers[p.IDENTIFIER_CONST] = None
+        return { 'local_variable_declaration' : (p.type_specifier, p.IDENTIFIER_CONST, p.SCOLON)}
+
+    @_('type_specifier IDENTIFIER_CONST ASSIGN expression SCOLON')
+    def local_decl(self, p):
+        self.local_identifiers[p.IDENTIFIER_CONST] = p.expression  # create a new instance of "name" : expr in the class CalcParser
+        return { 'local_variable_definition' : (p.type_specifier, p.IDENTIFIER_CONST, p.ASSIGN, p.expression, p.SCOLON)}
+
+
 
 
 
