@@ -103,9 +103,12 @@
 <logical_boolean_expression>  ::=  constant_identifier assignment_operator <logical_boolean_expression>  # to support smth like bool x = y = z = !(2<3) && (1==0)
                                |   <intermediate_logic_term>    #smth like !(rainy )
 
-<intermediate_logic_term>   ::= left_rounded_bracket <basic_logic_term> <logical_sign> <basic_logic_term> right_rounded_bracket
+<intermediate_logic_term>   ::= left_rounded_bracket <basic_logic_term> <logical_sign> <basic_logic_term> right_rounded_bracket  # eg ( rainy && !windy)
 
 <basic_logic_term>  ::=  left_rounded_bracket <relational_boolean_expression>  right_rounded_bracket
                       |   logical_NOT_sign left_rounded_bracket <relational_boolean_expression>  right_rounded_bracket
                       |   constant_bool
                       |   left_rounded_bracket   <intermediate_logic_term>  right_rounded_bracket
+
+<logical_sign> ::= logical_AND_sign
+                |  logical_OR_sign

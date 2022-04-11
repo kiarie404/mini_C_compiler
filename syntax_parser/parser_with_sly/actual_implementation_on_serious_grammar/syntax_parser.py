@@ -279,7 +279,7 @@ class CalcParser(Parser):
 
     @_('IF LPAREN boolean_expression RPAREN compound_statement ELSE compound_statement')
     def if_else_variant_stmt(self, p):
-        return (p.IF, p.LPAREN, p.boolean_expression, p.RPAREN, p.compound_statement, p.ELSE, p.compound_statement)
+        return (p.IF, p.LPAREN, p.boolean_expression, p.RPAREN, p.compound_statement0, p.ELSE, p.compound_statement1)
 
     @_('arithmetic_expression')
     def expression(self, p):
@@ -350,9 +350,60 @@ class CalcParser(Parser):
     def number(self, p):
         return {"Float" : p.FLOAT_CONSTANT}
 
+    @_('arithmetic_expression comparison_sign arithmetic_expression')
+    def relational_boolean_expression(self, p):
+        return (p[0], p[1], p[2])
+
+    @_('EQUIVALENT_TO',
+       'LESS_OR_EQUAL',
+       'LESS_THAN',
+       'GREATER_OR_EQUAL',
+       'GREATER_THAN',
+       'INEQUIVALENT_TO'
+       )
+    def comparison_sign(self, p):
+        return {"sign" : p[0]}
 
 
+    @_('IDENTIFIER_CONST ASSIGN logical_boolean_expression')
+    def logical_boolean_expression(self, p):
+        if p.IDENTIFIER_CONST in self.local_identifiers:
+            self.local_identifiers['IDENTIFIER_CONST'] = p.logical_boolean_expression
+            return (p.IDENTIFIER_CONST, p.ASSIGN, p.logical_boolean_expression)
 
+        else :
+            self.identifiers['IDENTIFIER_CONST'] = p.logical_boolean_expression
+            return (p.IDENTIFIER_CONST, p.ASSIGN, p.logical_boolean_expression)
+
+
+    @_('intermediate_logic_term')
+    def logical_boolean_expression(self, p):
+        return p.intermediate_logic_term
+
+    @_('LPAREN basic_logic_term logical_sign basic_logic_term RPAREN')
+    def intermediate_logic_term(self, p):
+        return (p[0], p[1], p[2], p[3], p[4])
+
+    @_('LPAREN relational_boolean_expression RPAREN')
+    def basic_logic_term(self, p):
+        return (p[0], p[1], p[2])
+
+    @_('LOGICAL_NOT LPAREN relational_boolean_expression RPAREN')
+    def basic_logic_term(self, p):
+        return (p[0], p[1], p[2], p[3])
+
+    @_('BOOL_CONSTANT')
+    def basic_logic_term(self, p):
+        return {"bool" : p.BOOL_CONSTANT }
+
+    @_('LPAREN intermediate_logic_term RPAREN')
+    def basic_logic_term(self, p):
+        return (p[0], p[1], p[2])
+
+    @_('LOGICAL_AND',
+       'LOGICAL_OR')
+    def logical_sign(self, p):
+        return {"logical_sign" : p[0] }
 
 
 
