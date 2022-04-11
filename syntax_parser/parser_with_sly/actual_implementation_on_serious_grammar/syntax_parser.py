@@ -160,7 +160,20 @@ class CalcParser(Parser):
 
     @_('IDENTIFIER_CONST')
     def identifier(self, p):
-        return { 'identifier_value' : p.IDENTIFIER_CONST}
+        try:
+            return self.identifiers[p.IDENTIFIER_CONST]  # makes it that, the value represented by the IDENTIFIER_CONST variable is returned.
+                                       # for example : if IDENTIFIER_CONST = 2, then 2 will be returned
+                                       # from here on , the identifier -> IDENTIFIER_CONST is same as identifier = 2
+        except LookupError:
+            print("Undefined name '%s'" % p.IDENTIFIER_CONST)
+            return 0
+
+    @_('VOID_KEYWORD',
+       'BOOL_KEYWORD',
+       'INT_KEYWORD',
+       'FLOAT_KEYWORD')
+    def type_specifier(self, p):
+        return { 'type specifier' : p.[0]}
 
 
     @_('expr TIMES expr')
