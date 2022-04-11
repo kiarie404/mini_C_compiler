@@ -332,10 +332,23 @@ class CalcParser(Parser):
 
     @_('LPAREN arithmetic_expression RPAREN')
     def factor(self, p):
-        return p.factor      # careful...
+        return (p.LPAREN, p.arithmetic_expression, p.RPAREN)      # careful...
 
+    @_('IDENTIFIER_CONST')
+    def factor(self, p):
+        return {p.IDENTIFIER_CONST : self.identifiers['p.IDENTIFIER_CONST']  }  #careful...
 
+    @_('number')
+    def factor(self, p):
+        return (p.number)
 
+    @_('INT_CONSTANT')
+    def number(self, p):
+        return {"Integer" : p.INT_CONSTANT}
+
+    @_('FLOAT_CONSTANT')
+    def number(self, p):
+        return {"Float" : p.FLOAT_CONSTANT}
 
 
 
