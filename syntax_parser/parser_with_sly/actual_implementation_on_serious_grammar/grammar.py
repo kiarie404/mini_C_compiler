@@ -36,7 +36,7 @@
   	            | <compound_statement>
                 | <iteration_statement>
   	            | <jump_statement>
-                | <local_decls>
+                | <local_decl>
 
 
 <expression_statement> ::= <expression> semi_colon_delimiter
@@ -49,9 +49,6 @@
 
 <compound_statement> ::= left_curly_bracket <stmt_list> right_curly_bracket
 
-
-<local_decls> ::= <local_decl> <local_decls>
-         	| <local_decl>
 
 <local_decl> ::= <type_specifier> constant_identifier semi_colon_delimiter
                | <type_specifier> constant_identifier assignment_operator <expression> semi_colon_delimiter
