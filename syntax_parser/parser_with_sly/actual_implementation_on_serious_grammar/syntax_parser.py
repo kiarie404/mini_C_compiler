@@ -136,7 +136,7 @@ class CalcParser(Parser):
 
     @_('command')
     def command_list(self, p):
-        return { 'global declaration' : (p.command)}
+        return { 'command' : (p.command)}
 
     @_('variable_declaration')
     def command(self, p):
@@ -336,7 +336,7 @@ class CalcParser(Parser):
 
     @_('IDENTIFIER_CONST')
     def factor(self, p):
-        return {p.IDENTIFIER_CONST : self.identifiers['p.IDENTIFIER_CONST']  }  #careful...
+        return p.IDENTIFIER_CONST  #careful...
 
     @_('number')
     def factor(self, p):
@@ -410,10 +410,13 @@ class CalcParser(Parser):
 if __name__ == '__main__':
     lexer = CalcLexer()
     parser = CalcParser()
-    while True:
-        try:
-            text = input('calc > ')
-        except EOFError:
-            break
-        if text:
-            parser.parse(lexer.tokenize(text))
+
+    # time to execute ...
+    try:
+        # take input from the sample code
+        with open("sample_test_code.c", "r") as source_file:
+            data = source_file.read()
+    except EOFError:
+        pass
+    if data:  # if data was read from source file successfully...
+        parser.parse(lexer.tokenize(data))
