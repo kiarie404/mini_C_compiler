@@ -320,7 +320,19 @@ class CalcParser(Parser):
     def meta_term(self, p):
         return p.term      # careful...
 
-    
+    @_('term TIMES factor',
+       'term DIVIDE factor',
+       'term MODULUS factor')
+    def term(self, p):
+        return (p.term, p[1], p.factor)
+
+    @_('factor')
+    def term(self, p):
+        return p.factor      # careful...
+
+    @_('LPAREN arithmetic_expression RPAREN')
+    def factor(self, p):
+        return p.factor      # careful...
 
 
 
