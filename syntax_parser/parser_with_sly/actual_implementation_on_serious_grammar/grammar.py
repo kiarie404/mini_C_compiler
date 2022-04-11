@@ -6,25 +6,24 @@
 <command> ::=  <variable_declaration>
   	            | <function_definition>
 
-<variable_declaration> ::= <type_specifier> <identifier> semi_colon_delimiter
-           	 | <type_specifier> <identifier> assignment_operator <expression> semi_colon_delimiter
+<variable_declaration> ::= <type_specifier> constant_identifier semi_colon_delimiter
+           	 | <type_specifier> constant_identifier assignment_operator <expression> semi_colon_delimiter
 
-<identifier> ::= constant_identifier
 
 <type_specifier> ::=      key_word_void
       	                | key_word_bool
       	                | key_word_int
       	                | key_word_float
 
-<function_definition> ::= <type_specifier> <identifier> left_rounded_bracket <function_parameters> right_rounded_bracket <compound_statement>
-                        | <type_specifier> <identifier> left_rounded_bracket  right_rounded_bracket <compound_statement>   # made function accept NULL as a parameter safely
+<function_definition> ::= <type_specifier> constant_identifier left_rounded_bracket <function_parameters> right_rounded_bracket <compound_statement>
+                        | <type_specifier> constant_identifier left_rounded_bracket  right_rounded_bracket <compound_statement>   # made function accept NULL as a parameter safely
 
 <function_parameters> ::= <parameter_list>
 
 <parameter_list> ::= <parameter> comma_delimiter <parameter_list>
         	| <parameter>
 
-<parameter> ::= <type_specifier> <identifier>
+<parameter> ::= <type_specifier> constant_identifier
 
 <stmt_list> ::= <stmt> <stmt_list>
        	| <stmt>
@@ -54,8 +53,8 @@
 <local_decls> ::= <local_decl> <local_decls>
          	| <local_decl>
 
-<local_decl> ::= <type_specifier> <identifier> semi_colon_delimiter
-               | <type_specifier> <identifier> assignment_operator <expression> semi_colon_delimiter
+<local_decl> ::= <type_specifier> constant_identifier semi_colon_delimiter
+               | <type_specifier> constant_identifier assignment_operator <expression> semi_colon_delimiter
 
 <jump_statement> ::= <return_stmt>
         	         | <break_stmt>
@@ -76,7 +75,7 @@
                       |  <logical_boolean_expression>      # that make decisions  eg (sunny && windy) || !(rainy)
 
 
-<arithmetic_expression> ::=  <identifier> assignment_operator <arithmetic_expression>  # to suppors an expression like x = y = z = 2+3(2*4)
+<arithmetic_expression> ::=  constant_identifier assignment_operator <arithmetic_expression>  # to suppors an expression like x = y = z = 2+3(2*4)
                          |   <meta_term>    # smth like 2+3(2*4)
 
 <meta_term>    ::=  <meta_term> addition_operator <term>
@@ -91,7 +90,7 @@
 <factor>        ::=  right_rounded_bracket arithmetic_expression left_rounded_bracket
                   | subtraction_operator <factor>
                   | addition_operator <factor>
-                  | <identifier>
+                  | constant_identifier
                   | <number>
 
 <number>  ::= constant_int
@@ -106,7 +105,7 @@
                          |  greater_than_or_equal_to_sign
                          |  less_than_or_equal_to_sign
 
-<logical_boolean_expression>  ::=  <identifier> assignment_operator <logical_boolean_expression>  # to support smth like bool x = y = z = !(2<3) && (1==0)
+<logical_boolean_expression>  ::=  constant_identifier assignment_operator <logical_boolean_expression>  # to support smth like bool x = y = z = !(2<3) && (1==0)
                                |   <intermediate_logic_term>    #smth like !(rainy )
 
 <intermediate_logic_term>   ::= left_rounded_bracket <basic_logic_term> <logical_sign> <basic_logic_term> right_rounded_bracket
