@@ -1,17 +1,4 @@
-# -----------------------------------------------------------------------------
-# calc.py
-# Ok, team ... people
-# Am having a hard time seperating the lexer and Parser into different files.
-# I have tried using json files to transfer data between the 2 modules, And I ended
-# up shooting myself in the foot--- a couple of times --- deliberately ----
-#
-# As much as modularity == good design  , We have to take this shot.
-# At least the code structure is modest
-#
-# Good luck people, in modifying the file.
-# Hope the code structure is clear
-# -----      kiarie404
-# -----------------------------------------------------------------------------
+
 
 import json
 from sly import Lexer, Parser
