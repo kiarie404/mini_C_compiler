@@ -17,7 +17,7 @@ import json
 from sly import Lexer, Parser
 
 class CalcLexer(Lexer):
-    tokens = { IDENTIFIER, RETURN_KEYWORD, VOID_KEYWORD, BOOL_KEYWORD, FLOAT_KEYWORD, INT_KEYWORD,
+    tokens = { IDENTIFIER_CONST, RETURN_KEYWORD, VOID_KEYWORD, BOOL_KEYWORD, FLOAT_KEYWORD, INT_KEYWORD,
                IF, ELSE, WHILE, BREAK,
                FLOAT_CONSTANT, INT_CONSTANT, BOOL_CONSTANT,
                PLUS, MINUS, TIMES, MODULUS, DIVIDE, ASSIGN,
@@ -57,16 +57,16 @@ class CalcLexer(Lexer):
     COMMA = ','
 
     # Tokens for keywords
-    IDENTIFIER = r'[a-zA-Z_][a-zA-Z0-9_]*'
-    IDENTIFIER['return'] = RETURN_KEYWORD
-    IDENTIFIER['void'] = VOID_KEYWORD
-    IDENTIFIER['bool'] = BOOL_KEYWORD
-    IDENTIFIER['float'] = FLOAT_KEYWORD
-    IDENTIFIER['int'] = INT_KEYWORD
-    IDENTIFIER['if'] = IF
-    IDENTIFIER['else'] = ELSE
-    IDENTIFIER['while'] = WHILE
-    IDENTIFIER['break'] = BREAK
+    IDENTIFIER_CONST = r'[a-zA-Z_][a-zA-Z0-9_]*'
+    IDENTIFIER_CONST['return'] = RETURN_KEYWORD
+    IDENTIFIER_CONST['void'] = VOID_KEYWORD
+    IDENTIFIER_CONST['bool'] = BOOL_KEYWORD
+    IDENTIFIER_CONST['float'] = FLOAT_KEYWORD
+    IDENTIFIER_CONST['int'] = INT_KEYWORD
+    IDENTIFIER_CONST['if'] = IF
+    IDENTIFIER_CONST['else'] = ELSE
+    IDENTIFIER_CONST['while'] = WHILE
+    IDENTIFIER_CONST['break'] = BREAK
 
     # Line number tracking
     @_(r'\n+')
@@ -123,25 +123,44 @@ class CalcParser(Parser):
         self.identifiers[p.NAME] = p.expr  # create a new instance of "name" : expr in the class CalcParser
                                      # this function returns nothing, because it has no-one to report to
 
-    @_('expr')
-    def statement(self, p):
-        print(p.expr)            # prints expr part of the statement.
-                                 # it ignores the NAME even if the name was defined
-                                 # this function returns nothing, because it has no-one to report to
+    @_('command_list')
+    def program(self, p):
+        print(p.command_list)            # prints command_list part of the statement.
+                                         # this function returns nothing, because it has no-one to report to
         # test : we print the json file...
-        json_pretty_output = json.dumps(p.expr, indent=2)
+        json_pretty_output = json.dumps(p.command_list, indent=2)
         print(json_pretty_output)
         # now we write that tree as a json file.
         with open("syntax_tree_representation.json", "w") as output_file:
-            json.dump(p.expr, output_file)
+            json.dump(p.command_list, output_file)
 
-    @_('expr PLUS expr')
-    def expr(self, p):
-        return { 'addition_expression' : (p.expr0, p[1], p.expr1)}
+    @_('command command_list')
+    def command_list(self, p):
+        return { 'global declarations' : (p.command, p.command_list)}
 
-    @_('expr MINUS expr')
-    def expr(self, p):
-        return { 'subtraction_expression' : (p.expr0, p[1], p.expr1)}
+    @_('command')
+    def command_list(self, p):
+        return { 'global declaration' : (p.command)}
+
+    @_('variable_declaration')
+    def command(self, p):
+        return { 'global variable declaration' : (p.variable_declaration)}
+
+    @_('function_definition')
+    def command(self, p):
+        return { 'function definition' : (p.function_definition)}
+
+    @_('type_specifier identifier SCOLON')
+    def variable_declaration(self, p):
+        return { 'simple variable declaration' : (p.type_specifier, p.identifier, p[2])}
+
+    @_('type_specifier identifier ASSIGN expression SCOLON')
+    def variable_declaration(self, p):
+        return { 'variable definition' : (p.type_specifier, p.identifier, p[2], p.expression, p.SCOLON)}
+
+    @_('IDENTIFIER_CONST')
+    def identifier(self, p):
+        return { 'identifier_value' : p.IDENTIFIER_CONST}
 
 
     @_('expr TIMES expr')
