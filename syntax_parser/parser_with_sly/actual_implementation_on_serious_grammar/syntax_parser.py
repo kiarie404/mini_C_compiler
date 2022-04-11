@@ -283,7 +283,48 @@ class CalcParser(Parser):
 
     @_('arithmetic_expression')
     def expression(self, p):
-        return (p.BREAK, p.SCOLON)
+        return {"arithmetic_expression" : p[0] }
+
+    @_('boolean_expression')
+    def expression(self, p):
+        return {"boolean_expression" : p[0] }
+
+    @_('relational_boolean_expression')
+    def boolean_expression(self, p):
+        return {"relational_boolean_expression" : p[0] }
+
+    @_('logical_boolean_expression')
+    def boolean_expression(self, p):
+        return {"logical_boolean_expression" : p[0] }
+
+    @_('IDENTIFIER_CONST ASSIGN arithmetic_expression')
+    def arithmetic_expression(self, p):
+        if p.IDENTIFIER_CONST in self.local_identifiers:
+            self.local_identifiers['IDENTIFIER_CONST'] = p.arithmetic_expression
+            return (p.IDENTIFIER_CONST, p.ASSIGN, p.arithmetic_expression)
+
+        else :
+            self.identifiers['IDENTIFIER_CONST'] = p.arithmetic_expression
+            return (p.IDENTIFIER_CONST, p.ASSIGN, p.arithmetic_expression)
+
+    @_('meta_term')
+    def arithmetic_expression(self, p):
+        return { "meta_term" : p.meta_term}
+
+    @_('meta_term PLUS term',
+       'meta_term MINUS term')
+    def meta_term(self, p):
+        return (p.meta_term, p[0], p.term)
+
+    @_('term')
+    def meta_term(self, p):
+        return p.term      # careful...
+
+    
+
+
+
+
 
 
 
