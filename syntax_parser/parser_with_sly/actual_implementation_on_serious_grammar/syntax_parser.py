@@ -253,6 +253,39 @@ class CalcParser(Parser):
         self.local_identifiers[p.IDENTIFIER_CONST] = p.expression  # create a new instance of "name" : expr in the class CalcParser
         return { 'local_variable_definition' : (p.type_specifier, p.IDENTIFIER_CONST, p.ASSIGN, p.expression, p.SCOLON)}
 
+    @_('return_stmt')
+    def jump_statement(self, p):
+        return { 'return_stmt' : p.return_stmt}
+
+    @_('break_stmt')
+    def jump_statement(self, p):
+        return { 'break_stmt' : p.break_stmt}
+
+    @_('RETURN_KEYWORD SCOLON')
+    def return_stmt(self, p):
+        return (p.RETURN_KEYWORD, p.SCOLON)
+
+    @_('RETURN_KEYWORD expression SCOLON')
+    def return_stmt(self, p):
+        return (p.RETURN_KEYWORD, p.expression, p.SCOLON)
+
+    @_('BREAK SCOLON')
+    def break_stmt(self, p):
+        return (p.BREAK, p.SCOLON)
+
+    @_('IF LPAREN boolean_expression RPAREN compound_statement')
+    def if_else_variant_stmt(self, p):
+        return (p.IF, p.LPAREN, p.boolean_expression, p.RPAREN, p.compound_statement)
+
+    @_('IF LPAREN boolean_expression RPAREN compound_statement ELSE compound_statement')
+    def if_else_variant_stmt(self, p):
+        return (p.IF, p.LPAREN, p.boolean_expression, p.RPAREN, p.compound_statement, p.ELSE, p.compound_statement)
+
+    @_('arithmetic_expression')
+    def expression(self, p):
+        return (p.BREAK, p.SCOLON)
+
+
 
 
 
