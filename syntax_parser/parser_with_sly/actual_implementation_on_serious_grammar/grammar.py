@@ -75,7 +75,7 @@
 <arithmetic_expression> ::=  constant_identifier assignment_operator <arithmetic_expression>  # to suppors an expression like x = y = z = 2+3(2*4)
                          |   <meta_term>    # smth like 2+3(2*4)
 
-<meta_term>    ::=  <meta_term> addition_operator <term>
+<meta_term>    ::=  <meta_term> addition_operator <term>  # careful...left factoring
                   | <meta_term> subtraction_operator <term>
                   | <term>
 
@@ -85,8 +85,6 @@
                   | <factor>
 
 <factor>        ::=  right_rounded_bracket arithmetic_expression left_rounded_bracket
-                  | subtraction_operator <factor>
-                  | addition_operator <factor>
                   | constant_identifier
                   | <number>
 
