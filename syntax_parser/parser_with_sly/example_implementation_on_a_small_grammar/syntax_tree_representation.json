@@ -1,1 +1,1 @@
-{"addition_expression": [{"number_value": "2"}, "+", {"number_value": "2"}]}
+[{"number_value": "2"}, "+", {"number_value": "2"}]
