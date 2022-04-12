@@ -187,7 +187,7 @@ class CalcParser(Parser):
 
     @_('type_specifier IDENTIFIER_CONST')
     def parameter(self, p):
-        return { type_specifier['type'] : p.IDENTIFIER_CONST }  # smth like { int : x }
+        return (p.type_specifier, p.IDENTIFIER_CONST)
 
     @_('stmt stmt_list')
     def stmt_list(self, p):
@@ -207,7 +207,7 @@ class CalcParser(Parser):
 
     @_('expression_statement')
     def non_if_else_variant_stmt(self, p):
-        return { 'full expression statement' : p.expression_statement }
+        return { 'expression statement' : p.expression_statement }
 
     @_('compound_statement')
     def non_if_else_variant_stmt(self, p):
@@ -336,7 +336,16 @@ class CalcParser(Parser):
 
     @_('IDENTIFIER_CONST')
     def factor(self, p):
-        return p.IDENTIFIER_CONST  #careful...
+        if p.IDENTIFIER_CONST in self.local_identifiers:
+            return {p.IDENTIFIER_CONST : self.local_identifiers[p.IDENTIFIER_CONST]}
+
+        else :
+            try:
+                return {p.IDENTIFIER_CONST : self.identifiers[p.IDENTIFIER_CONST]}
+            except LookupError:
+                print("Undefined name '%s'" % p.IDENTIFIER_CONST)
+                return {"error" : "undefined variable"}
+
 
     @_('number')
     def factor(self, p):
