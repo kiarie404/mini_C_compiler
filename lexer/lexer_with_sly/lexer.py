@@ -81,7 +81,7 @@ if __name__ == '__main__':
         line_struct = []
 
         for token_position, token in enumerate(lexer.tokenize(line)):
-            token_struct = {token_position : [token.type, token.value]}
+            token_struct = [token.type, token.value]
             line_struct.append(token_struct)
             out_file.write('<%r> --> %r\t' %(token.type, token.value)) # this is going to the .txt file
 
