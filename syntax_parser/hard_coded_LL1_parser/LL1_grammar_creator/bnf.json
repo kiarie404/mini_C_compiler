@@ -1,0 +1,535 @@
+{
+	"non_terminal":"program",
+	"productions":{
+		"non_terminal":"command_list"
+	}
+}
+{
+	"non_terminal":"command_list",
+	"productions":{
+		"non_terminal":"command",
+		"non_terminal":"command_list"
+	}
+}
+{
+	"non_terminal":"command_list",
+	"productions":{
+		"non_terminal":"command"
+	}
+}
+{
+	"non_terminal":"command",
+	"productions":{
+		"non_terminal":"variable_declaration"
+	}
+}
+{
+	"non_terminal":"command",
+	"productions":{
+		"non_terminal":"function_definition"
+	}
+}
+{
+	"non_terminal":"variable_declaration",
+	"productions":{
+		"non_terminal":"type_specifier",
+		"non_terminal":"identifier",
+		"terminal":"semi_colon_delimiter"
+	}
+}
+{
+	"non_terminal":"variable_declaration",
+	"productions":{
+		"non_terminal":"type_specifier",
+		"non_terminal":"identifier",
+		"terminal":"assignment_operator",
+		"non_terminal":"expression",
+		"terminal":"semi_colon_delimiter"
+	}
+}
+{
+	"non_terminal":"identifier",
+	"productions":{
+		"terminal":"constant_identifier"
+	}
+}
+{
+	"non_terminal":"type_specifier",
+	"productions":{
+		"terminal":"key_word_void"
+	}
+}
+{
+	"non_terminal":"type_specifier",
+	"productions":{
+		"terminal":"key_word_bool"
+	}
+}
+{
+	"non_terminal":"type_specifier",
+	"productions":{
+		"terminal":"key_word_int"
+	}
+}
+{
+	"non_terminal":"type_specifier",
+	"productions":{
+		"terminal":"key_word_float"
+	}
+}
+{
+	"non_terminal":"function_definition",
+	"productions":{
+		"non_terminal":"type_specifier",
+		"non_terminal":"identifier",
+		"terminal":"left_rounded_bracket",
+		"non_terminal":"function_parameters",
+		"terminal":"right_rounded_bracket",
+		"non_terminal":"compound_statement"
+	}
+}
+{
+	"non_terminal":"function_definition",
+	"productions":{
+		"non_terminal":"type_specifier",
+		"non_terminal":"identifier",
+		"terminal":"left_rounded_bracket",
+		"terminal":"right_rounded_bracket",
+		"non_terminal":"compound_statement"
+	}
+}
+{
+	"non_terminal":"function_parameters",
+	"productions":{
+		"non_terminal":"parameter_list"
+	}
+}
+{
+	"non_terminal":"parameter_list",
+	"productions":{
+		"non_terminal":"parameter",
+		"terminal":"comma_delimiter",
+		"non_terminal":"parameter_list"
+	}
+}
+{
+	"non_terminal":"parameter_list",
+	"productions":{
+		"non_terminal":"parameter"
+	}
+}
+{
+	"non_terminal":"parameter",
+	"productions":{
+		"non_terminal":"type_specifier",
+		"non_terminal":"identifier"
+	}
+}
+{
+	"non_terminal":"stmt_list",
+	"productions":{
+		"non_terminal":"stmt",
+		"non_terminal":"stmt_list"
+	}
+}
+{
+	"non_terminal":"stmt_list",
+	"productions":{
+		"non_terminal":"stmt"
+	}
+}
+{
+	"non_terminal":"stmt",
+	"productions":{
+		"non_terminal":"if_else_variant_stmt"
+	}
+}
+{
+	"non_terminal":"stmt",
+	"productions":{
+		"non_terminal":"non_if_else_variant_stmt"
+	}
+}
+{
+	"non_terminal":"non_if_else_variant_stmt",
+	"productions":{
+		"non_terminal":"expression_statement"
+	}
+}
+{
+	"non_terminal":"non_if_else_variant_stmt",
+	"productions":{
+		"non_terminal":"compound_statement"
+	}
+}
+{
+	"non_terminal":"non_if_else_variant_stmt",
+	"productions":{
+		"non_terminal":"iteration_statement"
+	}
+}
+{
+	"non_terminal":"non_if_else_variant_stmt",
+	"productions":{
+		"non_terminal":"jump_statement"
+	}
+}
+{
+	"non_terminal":"non_if_else_variant_stmt",
+	"productions":{
+		"non_terminal":"local_decls"
+	}
+}
+{
+	"non_terminal":"expression_statement",
+	"productions":{
+		"non_terminal":"expression",
+		"terminal":"semi_colon_delimiter"
+	}
+}
+{
+	"non_terminal":"expression_statement",
+	"productions":{
+		"terminal":"semi_colon_delimiter"
+	}
+}
+{
+	"non_terminal":"iteration_statement",
+	"productions":{
+		"terminal":"key_word_while",
+		"terminal":"left_rounded_bracket",
+		"non_terminal":"boolean_expression",
+		"terminal":"right_rounded_bracket",
+		"non_terminal":"compound_statement"
+	}
+}
+{
+	"non_terminal":"compound_statement",
+	"productions":{
+		"terminal":"left_curly_bracket",
+		"non_terminal":"stmt_list",
+		"terminal":"right_curly_bracket"
+	}
+}
+{
+	"non_terminal":"local_decls",
+	"productions":{
+		"non_terminal":"local_decl",
+		"non_terminal":"local_decls"
+	}
+}
+{
+	"non_terminal":"local_decls",
+	"productions":{
+		"non_terminal":"local_decl"
+	}
+}
+{
+	"non_terminal":"local_decl",
+	"productions":{
+		"non_terminal":"type_specifier",
+		"non_terminal":"identifier",
+		"terminal":"semi_colon_delimiter"
+	}
+}
+{
+	"non_terminal":"local_decl",
+	"productions":{
+		"non_terminal":"type_specifier",
+		"non_terminal":"identifier",
+		"terminal":"assignment_operator",
+		"non_terminal":"expression",
+		"terminal":"semi_colon_delimiter"
+	}
+}
+{
+	"non_terminal":"jump_statement",
+	"productions":{
+		"non_terminal":"return_stmt"
+	}
+}
+{
+	"non_terminal":"jump_statement",
+	"productions":{
+		"non_terminal":"break_stmt"
+	}
+}
+{
+	"non_terminal":"return_stmt",
+	"productions":{
+		"terminal":"key_word_return",
+		"terminal":"semi_colon_delimiter"
+	}
+}
+{
+	"non_terminal":"return_stmt",
+	"productions":{
+		"terminal":"key_word_return",
+		"non_terminal":"expression",
+		"terminal":"semi_colon_delimiter"
+	}
+}
+{
+	"non_terminal":"break_stmt",
+	"productions":{
+		"terminal":"key_word_break",
+		"terminal":"semi_colon_delimiter"
+	}
+}
+{
+	"non_terminal":"if_else_variant_stmt",
+	"productions":{
+		"terminal":"key_word_if",
+		"terminal":"left_rounded_bracket",
+		"non_terminal":"boolean_expression",
+		"terminal":"right_rounded_bracket",
+		"non_terminal":"compound_statement"
+	}
+}
+{
+	"non_terminal":"if_else_variant_stmt",
+	"productions":{
+		"terminal":"key_word_if",
+		"terminal":"left_rounded_bracket",
+		"non_terminal":"boolean_expression",
+		"terminal":"right_rounded_bracket",
+		"non_terminal":"compound_statement",
+		"terminal":"key_word_else",
+		"non_terminal":"compound_statement"
+	}
+}
+{
+	"non_terminal":"expression",
+	"productions":{
+		"non_terminal":"arithmetic_expression"
+	}
+}
+{
+	"non_terminal":"expression",
+	"productions":{
+		"non_terminal":"boolean_expression"
+	}
+}
+{
+	"non_terminal":"boolean_expression",
+	"productions":{
+		"non_terminal":"relational_boolean_expression"
+	}
+}
+{
+	"non_terminal":"boolean_expression",
+	"productions":{
+		"non_terminal":"logical_boolean_expression"
+	}
+}
+{
+	"non_terminal":"arithmetic_expression",
+	"productions":{
+		"non_terminal":"identifier",
+		"terminal":"assignment_operator",
+		"non_terminal":"arithmetic_expression"
+	}
+}
+{
+	"non_terminal":"arithmetic_expression",
+	"productions":{
+		"non_terminal":"meta_term"
+	}
+}
+{
+	"non_terminal":"meta_term",
+	"productions":{
+		"non_terminal":"meta_term",
+		"terminal":"addition_operator",
+		"non_terminal":"term"
+	}
+}
+{
+	"non_terminal":"meta_term",
+	"productions":{
+		"non_terminal":"meta_term",
+		"terminal":"subtraction_operator",
+		"non_terminal":"term"
+	}
+}
+{
+	"non_terminal":"meta_term",
+	"productions":{
+		"non_terminal":"term"
+	}
+}
+{
+	"non_terminal":"term",
+	"productions":{
+		"non_terminal":"term",
+		"terminal":"multiplication_operator",
+		"non_terminal":"factor"
+	}
+}
+{
+	"non_terminal":"term",
+	"productions":{
+		"non_terminal":"term",
+		"terminal":"division_operator",
+		"non_terminal":"factor"
+	}
+}
+{
+	"non_terminal":"term",
+	"productions":{
+		"non_terminal":"term",
+		"terminal":"modulus_operator",
+		"non_terminal":"factor"
+	}
+}
+{
+	"non_terminal":"term",
+	"productions":{
+		"non_terminal":"factor"
+	}
+}
+{
+	"non_terminal":"factor",
+	"productions":{
+		"terminal":"right_rounded_bracket",
+		"terminal":"arithmetic_expression",
+		"terminal":"left_rounded_bracket"
+	}
+}
+{
+	"non_terminal":"factor",
+	"productions":{
+		"terminal":"subtraction_operator",
+		"non_terminal":"factor"
+	}
+}
+{
+	"non_terminal":"factor",
+	"productions":{
+		"terminal":"addition_operator",
+		"non_terminal":"factor"
+	}
+}
+{
+	"non_terminal":"factor",
+	"productions":{
+		"non_terminal":"identifier"
+	}
+}
+{
+	"non_terminal":"factor",
+	"productions":{
+		"non_terminal":"number"
+	}
+}
+{
+	"non_terminal":"number",
+	"productions":{
+		"terminal":"constant_int"
+	}
+}
+{
+	"non_terminal":"number",
+	"productions":{
+		"terminal":"constant_float"
+	}
+}
+{
+	"non_terminal":"relational_boolean_expression",
+	"productions":{
+		"non_terminal":"arithmetic_expression",
+		"non_terminal":"comparison_sign",
+		"non_terminal":"arithmetic_expression"
+	}
+}
+{
+	"non_terminal":"comparison_sign",
+	"productions":{
+		"terminal":"less_than_sign"
+	}
+}
+{
+	"non_terminal":"comparison_sign",
+	"productions":{
+		"terminal":"greater_than_sign"
+	}
+}
+{
+	"non_terminal":"comparison_sign",
+	"productions":{
+		"terminal":"equivalent_to_sign"
+	}
+}
+{
+	"non_terminal":"comparison_sign",
+	"productions":{
+		"terminal":"inequivalent_to_sign"
+	}
+}
+{
+	"non_terminal":"comparison_sign",
+	"productions":{
+		"terminal":"greater_than_or_equal_to_sign"
+	}
+}
+{
+	"non_terminal":"comparison_sign",
+	"productions":{
+		"terminal":"less_than_or_equal_to_sign"
+	}
+}
+{
+	"non_terminal":"logical_boolean_expression",
+	"productions":{
+		"non_terminal":"identifier",
+		"terminal":"assignment_operator",
+		"non_terminal":"logical_boolean_expression"
+	}
+}
+{
+	"non_terminal":"logical_boolean_expression",
+	"productions":{
+		"non_terminal":"intermediate_logic_term"
+	}
+}
+{
+	"non_terminal":"intermediate_logic_term",
+	"productions":{
+		"terminal":"left_rounded_bracket",
+		"non_terminal":"basic_logic_term",
+		"non_terminal":"logical_sign",
+		"non_terminal":"basic_logic_term",
+		"terminal":"right_rounded_bracket"
+	}
+}
+{
+	"non_terminal":"basic_logic_term",
+	"productions":{
+		"terminal":"left_rounded_bracket",
+		"non_terminal":"relational_boolean_expression",
+		"terminal":"right_rounded_bracket"
+	}
+}
+{
+	"non_terminal":"basic_logic_term",
+	"productions":{
+		"terminal":"logical_NOT_sign",
+		"terminal":"left_rounded_bracket",
+		"non_terminal":"relational_boolean_expression",
+		"terminal":"right_rounded_bracket"
+	}
+}
+{
+	"non_terminal":"basic_logic_term",
+	"productions":{
+		"terminal":"constant_bool"
+	}
+}
+{
+	"non_terminal":"basic_logic_term",
+	"productions":{
+		"terminal":"left_rounded_bracket",
+		"non_terminal":"intermediate_logic_term",
+		"terminal":"right_rounded_bracket"
+	}
+}

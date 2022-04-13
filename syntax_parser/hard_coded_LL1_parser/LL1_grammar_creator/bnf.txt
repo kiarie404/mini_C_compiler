@@ -1,0 +1,109 @@
+<program> ::= <command_list>
+
+<command_list> ::= <command> <command_list>
+<command_list> ::= <command>
+
+<command> ::= <variable_declaration>
+<command> ::= <function_definition>
+
+<variable_declaration> ::= <type_specifier> <identifier> semi_colon_delimiter
+<variable_declaration> ::= <type_specifier> <identifier> assignment_operator <expression> semi_colon_delimiter
+
+<identifier> ::= constant_identifier
+
+<type_specifier> ::= key_word_void
+<type_specifier> ::= key_word_bool
+<type_specifier> ::= key_word_int
+<type_specifier> ::= key_word_float
+
+<function_definition> ::= <type_specifier> <identifier> left_rounded_bracket <function_parameters> right_rounded_bracket <compound_statement>
+<function_definition> ::= <type_specifier> <identifier> left_rounded_bracket right_rounded_bracket <compound_statement>
+
+<function_parameters> ::= <parameter_list>
+
+<parameter_list> ::= <parameter> comma_delimiter <parameter_list>
+<parameter_list> ::= <parameter>
+
+<parameter> ::= <type_specifier> <identifier>
+
+<stmt_list> ::= <stmt> <stmt_list>
+<stmt_list> ::= <stmt>
+
+<stmt> ::= <if_else_variant_stmt>
+<stmt> ::= <non_if_else_variant_stmt>
+
+<non_if_else_variant_stmt> ::= <expression_statement>
+<non_if_else_variant_stmt> ::= <compound_statement>
+<non_if_else_variant_stmt> ::= <iteration_statement>
+<non_if_else_variant_stmt> ::= <jump_statement>
+<non_if_else_variant_stmt> ::= <local_decls>
+
+<expression_statement> ::= <expression> semi_colon_delimiter
+<expression_statement> ::= semi_colon_delimiter
+
+<iteration_statement> ::= key_word_while left_rounded_bracket <boolean_expression> right_rounded_bracket <compound_statement>
+
+<compound_statement> ::= left_curly_bracket <stmt_list> right_curly_bracket
+
+<local_decls> ::= <local_decl> <local_decls>
+<local_decls> ::= <local_decl>
+
+<local_decl> ::= <type_specifier> <identifier> semi_colon_delimiter
+<local_decl> ::= <type_specifier> <identifier> assignment_operator <expression> semi_colon_delimiter
+
+<jump_statement> ::= <return_stmt>
+<jump_statement> ::= <break_stmt>
+
+<return_stmt> ::= key_word_return semi_colon_delimiter
+<return_stmt> ::= key_word_return <expression> semi_colon_delimiter
+
+<break_stmt> ::= key_word_break semi_colon_delimiter
+
+<if_else_variant_stmt> ::= key_word_if left_rounded_bracket <boolean_expression> right_rounded_bracket <compound_statement>
+<if_else_variant_stmt> ::= key_word_if left_rounded_bracket <boolean_expression> right_rounded_bracket <compound_statement> key_word_else <compound_statement>
+
+<expression> ::= <arithmetic_expression>
+<expression> ::= <boolean_expression>
+
+<boolean_expression> ::= <relational_boolean_expression>
+<boolean_expression> ::= <logical_boolean_expression>
+
+<arithmetic_expression> ::= <identifier> assignment_operator <arithmetic_expression>
+<arithmetic_expression> ::= <meta_term>
+
+<meta_term> ::= <meta_term> addition_operator <term>
+<meta_term> ::= <meta_term> subtraction_operator <term>
+<meta_term> ::= <term>
+
+<term> ::= <term> multiplication_operator <factor>
+<term> ::= <term> division_operator <factor>
+<term> ::= <term> modulus_operator <factor>
+<term> ::= <factor>
+
+<factor> ::= right_rounded_bracket arithmetic_expression left_rounded_bracket
+<factor> ::= subtraction_operator <factor>
+<factor> ::= addition_operator <factor>
+<factor> ::= <identifier>
+<factor> ::= <number>
+
+<number> ::= constant_int
+<number> ::= constant_float
+
+<relational_boolean_expression> ::= <arithmetic_expression> <comparison_sign> <arithmetic_expression>
+
+<comparison_sign> ::= less_than_sign
+<comparison_sign> ::= greater_than_sign
+<comparison_sign> ::= equivalent_to_sign
+<comparison_sign> ::= inequivalent_to_sign
+<comparison_sign> ::= greater_than_or_equal_to_sign
+<comparison_sign> ::= less_than_or_equal_to_sign
+
+<logical_boolean_expression> ::= <identifier> assignment_operator <logical_boolean_expression>
+<logical_boolean_expression> ::= <intermediate_logic_term>
+
+<intermediate_logic_term> ::= left_rounded_bracket <basic_logic_term> <logical_sign> <basic_logic_term> right_rounded_bracket
+
+<basic_logic_term> ::= left_rounded_bracket <relational_boolean_expression> right_rounded_bracket
+<basic_logic_term> ::= logical_NOT_sign left_rounded_bracket <relational_boolean_expression> right_rounded_bracket
+<basic_logic_term> ::= constant_bool
+<basic_logic_term> ::= left_rounded_bracket <intermediate_logic_term> right_rounded_bracket
