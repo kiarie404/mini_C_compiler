@@ -1,0 +1,1 @@
+[[["INT_KEYWORD", "int"], ["IDENTIFIER", "main"], ["LPAREN", "("], ["RPAREN", ")"], ["LCURLY", "{"]], [["INT_KEYWORD", "int"], ["IDENTIFIER", "num"], ["ASSIGN", "="], ["INT_CONSTANT", "10"], ["SCOLON", ";"]], [["INT_KEYWORD", "int"], ["IDENTIFIER", "num2"], ["ASSIGN", "="], ["INT_CONSTANT", "20"], ["SCOLON", ";"]], [["RCURLY", "}"]]]
