@@ -1,36 +1,4 @@
-
-
-<'INT_KEYWORD'> --> 'int'	<'IDENTIFIER'> --> 'do_stuff'	<'LPAREN'> --> '('	<'INT_KEYWORD'> --> 'int'	<'IDENTIFIER'> --> 'x'	<'COMMA'> --> ','	<'FLOAT_KEYWORD'> --> 'float'	<'IDENTIFIER'> --> 'y'	<'RPAREN'> --> ')'	<'LCURLY'> --> '{'	
-
-
-<'INT_KEYWORD'> --> 'int'	<'IDENTIFIER'> --> 'an_int'	<'ASSIGN'> --> '='	<'INT_CONSTANT'> --> '34'	<'SCOLON'> --> ';'	
-<'FLOAT_KEYWORD'> --> 'float'	<'IDENTIFIER'> --> 'a_float'	<'ASSIGN'> --> '='	<'FLOAT_CONSTANT'> --> '34.78'	<'SCOLON'> --> ';'	
-<'BOOL_KEYWORD'> --> 'bool'	<'IDENTIFIER'> --> 'a_bool'	<'ASSIGN'> --> '='	<'BOOL_CONSTANT'> --> 'true'	<'SCOLON'> --> ';'	
-
-
-<'FLOAT_KEYWORD'> --> 'float'	<'IDENTIFIER'> --> 'some_value'	<'ASSIGN'> --> '='	<'IDENTIFIER'> --> 'an_int'	<'TIMES'> --> '*'	<'IDENTIFIER'> --> 'a_float'	<'PLUS'> --> '+'	<'LPAREN'> --> '('	<'INT_CONSTANT'> --> '32'	<'MODULUS'> --> '%'	<'INT_CONSTANT'> --> '8'	<'RPAREN'> --> ')'	<'DIVIDE'> --> '/'	<'FLOAT_CONSTANT'> --> '10.9'	<'SCOLON'> --> ';'	
-<'FLOAT_KEYWORD'> --> 'float'	<'IDENTIFIER'> --> 'another_value'	<'ASSIGN'> --> '='	<'IDENTIFIER'> --> 'some_value'	<'ASSIGN'> --> '='	<'INT_CONSTANT'> --> '10'	<'SCOLON'> --> ';'	
-
-
-
-<'BOOL_KEYWORD'> --> 'bool'	<'IDENTIFIER'> --> 'comparison'	<'ASSIGN'> --> '='	<'INT_CONSTANT'> --> '2'	<'LESS_THAN'> --> '<'	<'INT_CONSTANT'> --> '4'	<'SCOLON'> --> ';'	
-<'BOOL_KEYWORD'> --> 'bool'	<'IDENTIFIER'> --> 'comparison2'	<'ASSIGN'> --> '='	<'INT_CONSTANT'> --> '2'	<'GREATER_THAN'> --> '>'	<'IDENTIFIER'> --> 'an_int'	<'SCOLON'> --> ';'	
-
-
-<'BOOL_KEYWORD'> --> 'bool'	<'IDENTIFIER'> --> 'comparison3'	<'ASSIGN'> --> '='	<'IDENTIFIER'> --> 'comparison'	<'LOGICAL_AND'> --> '&&'	<'IDENTIFIER'> --> 'comparison2'	
-<'BOOL_KEYWORD'> --> 'bool'	<'IDENTIFIER'> --> 'comparison4'	<'ASSIGN'> --> '='	<'LPAREN'> --> '('	<'IDENTIFIER'> --> 'comparison'	<'LOGICAL_AND'> --> '&&'	<'IDENTIFIER'> --> 'comparison2'	<'RPAREN'> --> ')'	<'LOGICAL_OR'> --> '||'	<'LOGICAL_NOT'> --> '!'	<'LPAREN'> --> '('	<'INT_CONSTANT'> --> '2'	<'ASSIGN'> --> '='	<'ASSIGN'> --> '='	<'INT_CONSTANT'> --> '3'	<'RPAREN'> --> ')'	
-
-
-<'INT_KEYWORD'> --> 'int'	<'IDENTIFIER'> --> 'count'	<'ASSIGN'> --> '='	<'INT_CONSTANT'> --> '2'	<'SCOLON'> --> ';'	
-<'INT_KEYWORD'> --> 'int'	<'IDENTIFIER'> --> 'num'	<'ASSIGN'> --> '='	<'INT_CONSTANT'> --> '12'	<'SCOLON'> --> ';'	
-<'WHILE'> --> 'while'	<'LPAREN'> --> '('	<'IDENTIFIER'> --> 'count'	<'LESS_OR_EQUAL'> --> '<='	<'IDENTIFIER'> --> 'num'	<'RPAREN'> --> ')'	<'LCURLY'> --> '{'	
-
-<'IF'> --> 'if'	<'LPAREN'> --> '('	<'IDENTIFIER'> --> 'count'	<'ASSIGN'> --> '='	<'ASSIGN'> --> '='	<'IDENTIFIER'> --> 'num'	<'RPAREN'> --> ')'	<'LCURLY'> --> '{'	<'BREAK'> --> 'break'	<'SCOLON'> --> ';'	<'RCURLY'> --> '}'	
-
-<'IF'> --> 'if'	<'LPAREN'> --> '('	<'LPAREN'> --> '('	<'IDENTIFIER'> --> 'num'	<'MODULUS'> --> '%'	<'IDENTIFIER'> --> 'count'	<'RPAREN'> --> ')'	<'ASSIGN'> --> '='	<'ASSIGN'> --> '='	<'INT_CONSTANT'> --> '0'	<'RPAREN'> --> ')'	<'LCURLY'> --> '{'	
-<'RETURN_KEYWORD'> --> 'return'	<'BOOL_CONSTANT'> --> 'false'	<'SCOLON'> --> ';'	
-<'RCURLY'> --> '}'	<'ELSE'> --> 'else'	<'LCURLY'> --> '{'	
-<'IDENTIFIER'> --> 'count'	<'PLUS'> --> '+'	<'PLUS'> --> '+'	<'SCOLON'> --> ';'	
-<'RCURLY'> --> '}'	
-<'RCURLY'> --> '}'	
+<'INT_KEYWORD'> --> 'int'	<'IDENTIFIER'> --> 'main'	<'LPAREN'> --> '('	<'RPAREN'> --> ')'	<'LCURLY'> --> '{'	
+<'INT_KEYWORD'> --> 'int'	<'IDENTIFIER'> --> 'num'	<'ASSIGN'> --> '='	<'INT_CONSTANT'> --> '10'	<'SCOLON'> --> ';'	
+<'INT_KEYWORD'> --> 'int'	<'IDENTIFIER'> --> 'num2'	<'ASSIGN'> --> '='	<'INT_CONSTANT'> --> '20'	<'SCOLON'> --> ';'	
 <'RCURLY'> --> '}'	

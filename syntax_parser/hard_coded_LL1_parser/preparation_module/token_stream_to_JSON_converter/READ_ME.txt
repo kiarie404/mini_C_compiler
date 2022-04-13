@@ -11,9 +11,25 @@ token_stream.txt
 token_stream.json
 BNF_to_json_convertion.py
 
+**************  How to manipulate elements of the json file **********
+  think of the example program :
+    int main(){
+      int num = 10 ;
+    }
+
+  The json document is imported as an array (list or tuple)
+     like this in python :
+       with open("token_stream.json", 'r') as source:
+           a_list = json.load(source)
+
+  To access the first line :  a_list[0]    ---> returns  [{"0": ["INT_KEYWORD", "int"]}, {"1": ["IDENTIFIER", "main"]}, {"2": ["LPAREN", "("]}, {"3": ["RPAREN", ")"]}, {"4": ["LCURLY", "{"]}]
+  to access the second line : a_list[1]    ---> returns  [{"0": ["INT_KEYWORD", "int"]}, {"1": ["IDENTIFIER", "num"]}, {"2": ["ASSIGN", "="]}, {"3": ["INT_CONSTANT", "10"]}, {"4": ["SCOLON", ";"]}]
+
+  To access the first token ie. int token : a_list[0][0]
 
 
-***************  How the json file is structured ********************8
+
+***************  How the output json file is structured ********************8
 
 Take for example The following snippet of a token stream....
 
@@ -37,7 +53,7 @@ Take for example The following snippet of a token stream....
 #How a document is defined
 #The document is made up of many lines
 #Each line is stored as an element of a dictionary where the key is index of type int and its value is a line
-{
-    0:[{0:["INT_KEYWORD","int"]},{1:["IDENTIFIER","an_int"]},{2:["ASSIGN","="]}],
-    1:[{0:["FLOAT_KEYWORD","float"]},{1:["IDENTIFIER","a_float"]},{2:["ASSIGN","="]}]
- }
+[
+    [{0:["INT_KEYWORD","int"]},{1:["IDENTIFIER","an_int"]},{2:["ASSIGN","="]}],
+    [{0:["FLOAT_KEYWORD","float"]},{1:["IDENTIFIER","a_float"]},{2:["ASSIGN","="]}]
+ ]
