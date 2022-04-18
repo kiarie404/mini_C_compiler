@@ -56,17 +56,29 @@ def find_non_terminal(line):
     return non_terminal
 
 def bnf_json(in_file,out_file):
+    file_cont = in_file.readlines()
     out_file.write("{\n\t\"bnf\": [\n")
-    for line in in_file:
-        json_str = ""
-        prod = []
-        prod = line.split(" ::= ")
-        if(prod[0] != '\n'):
-            json_str += "\t\t{\n"
-            json_str += "\t\t\t\"bnf_value\": \"{}\",\n".format(find_non_terminal(prod[0])) 
-            json_str += prod_rule(prod)
-            json_str += "\t\t},\n"
-            out_file.write(json_str)
+    for line in file_cont:
+        if is_last(file_cont,line):    
+            json_str = ""
+            prod = []
+            prod = line.split(" ::= ")
+            if(prod[0] != '\n'):
+                json_str += "\t\t{\n"
+                json_str += "\t\t\t\"bnf_value\": \"{}\",\n".format(find_non_terminal(prod[0])) 
+                json_str += prod_rule(prod)
+                json_str += "\t\t}\n"
+                out_file.write(json_str)
+        else:
+            json_str = ""
+            prod = []
+            prod = line.split(" ::= ")
+            if(prod[0] != '\n'):
+                json_str += "\t\t{\n"
+                json_str += "\t\t\t\"bnf_value\": \"{}\",\n".format(find_non_terminal(prod[0])) 
+                json_str += prod_rule(prod)
+                json_str += "\t\t},\n"
+                out_file.write(json_str)
     out_file.write("\t]\n}")
 
 in_file = open("bnf.txt","r")
