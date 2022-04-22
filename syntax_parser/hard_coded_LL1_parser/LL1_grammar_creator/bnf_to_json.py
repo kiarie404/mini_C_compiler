@@ -1,15 +1,11 @@
-def stringify_array(arr,start_num):
-    txt = ""
-    for item in range(start_num,len(arr)):
-        txt += arr[item]
-    return txt
+from sly import Lexer
 
-def remove_newline(txt):
-    new_txt = ""
-    for ch in txt:
-        if ch != '\n':
-            new_txt += ch
-    return new_txt
+def stringify_nt(nt):
+    txt = ""
+    for ch in nt:
+        if ch != '<' and ch != '>':
+            txt += ch
+    return txt
 
 def is_last(arr,item):
     if arr.index(item) == (len(arr) - 1):
@@ -17,74 +13,101 @@ def is_last(arr,item):
     else:
         return False
 
-def prod_rule(arr):
-    prod_rule = ""
-    prod_rule += "\t\t\t\"productions\": [\n"
-    txt = ""
-    new_arr = []
-    if len(arr) == 0:
-        return None
+def tok_type(val):
+    if val == "NON_TERMINAL":
+        return "non_terminal"
     else:
-        txt += stringify_array(arr,1)
-    new_arr = txt.split(" ")
-    for item in new_arr:
-        if is_last(new_arr,item):
-            if len(find_non_terminal(item)) != 0:
-                prod_rule += "\t\t\t\t{\n\t\t\t\t\t\"bnf_type\": \"non_terminal\",\n\t\t\t\t\t\"bnf_value\": \"%s\"\n\t\t\t\t}\n"%(find_non_terminal(item))
-            else:
-                prod_rule += "\t\t\t\t{\n\t\t\t\t\t\"bnf_type\": \"terminal\",\n\t\t\t\t\t\"bnf_value\": \"%s\"\n\t\t\t\t}\n"%(remove_newline(item))
+        return "terminal"
+
+def check(val,arr):
+    for item in arr:
+        if item == val:
+            return True
+    return False
+
+def get_rules(in_file):
+    class CalcLexer(Lexer):
+        tokens = { TERMINAL, NON_TERMINAL }
+
+        ignore = ' \t'
+        ignore_rule = '::='
+        ignore_newline = '\n'
+
+        TERMINAL      = r'[a-zA-Z_]+'
+        NON_TERMINAL  = r'(<\w+>)+'
+    lexer = CalcLexer()
+    rules = []
+    for line in in_file:
+        rule = []
+        for tok in lexer.tokenize(line):
+            my_dict = {"token_type":tok.type,"token_value":tok.value}
+            rule.append(my_dict)
+        rules.append(rule)
+    return rules
+
+def prod(val,rules):
+    arr_1 = []
+    for rule in rules:
+        arr_2 = []
+        if len(rule) != 0:
+            my_dict = rule[0]
+            if my_dict["token_value"] == val:
+                for i in range(1,len(rule)):
+                    arr_2.append(rule[i])
+                arr_1.append(arr_2)
+    return arr_1
+
+def jsonify(nt,prod_list):
+    string = ""
+    string += "\t\t{\n"
+    string += "\t\t\t\"token_value\": \"{}\",\n".format(stringify_nt(nt))
+    string += "\t\t\t\"productions\": [\n"
+    for prod in prod_list:
+        if is_last(prod_list,prod) and len(prod) != 0:
+            string += "\t\t\t\t[\n"
+            for item in prod:
+                string += "\t\t\t\t\t{\n\t\t\t\t\t\t\"token_type\": \"%s\",\n"%(tok_type(item["token_type"]))
+                string += "\t\t\t\t\t\t\"token_value\": \"%s\"\n"%(stringify_nt(item["token_value"]))
+                if is_last(prod,item):
+                    string += "\t\t\t\t\t}\n"
+                else:
+                    string += "\t\t\t\t\t},\n"
+            string += "\t\t\t\t]\n"
         else:
-            if len(find_non_terminal(item)) != 0:
-                prod_rule += "\t\t\t\t{\n\t\t\t\t\t\"bnf_type\": \"non_terminal\",\n\t\t\t\t\t\"bnf_value\": \"%s\"\n\t\t\t\t},\n"%(find_non_terminal(item))
-            else:
-                prod_rule += "\t\t\t\t{\n\t\t\t\t\t\"bnf_type\": \"terminal\",\n\t\t\t\t\t\"bnf_value\": \"%s\"\n\t\t\t\t},\n"%(remove_newline(item))
-    
-    prod_rule += "\t\t\t]\n"
+            string += "\t\t\t\t[\n"
+            for item in prod:
+                string += "\t\t\t\t\t{\n\t\t\t\t\t\t\"token_type\": \"%s\",\n"%(tok_type(item["token_type"]))
+                string += "\t\t\t\t\t\t\"token_value\": \"%s\"\n"%(stringify_nt(item["token_value"]))
+                if is_last(prod,item):
+                    string += "\t\t\t\t\t}\n"
+                else:
+                    string += "\t\t\t\t\t},\n"
+            string += "\t\t\t\t],\n"
+        string += "\t\t\t]\n\t\t},\n"
+    return string
 
-    return prod_rule
+def left(rules):
+    txt = ""
+    arr = []
+    lst = False
+    for rule in rules:
+        if len(rule) != 0:
+            my_dict = rule[0]
+            if not check(my_dict["token_value"],arr):
+                arr.append(my_dict["token_value"])
+                prods = prod(my_dict["token_value"],rules)
+                txt += jsonify(my_dict["token_value"],prods)
+    return txt
 
-def find_non_terminal(line):
-    count = 0
-    non_terminal = ""
-    for ch in line:
-        if count != 0 and ch != '>':
-            non_terminal += ch
-        if ch == '<':
-            count = count + 1
-        if ch == '>':
-            count = count - 1
-    return non_terminal
+def bnf_json(rules,out_file):
+    out = ""
+    out += "{\n\t\"bnf\": [\n"
+    out += left(rules)
+    out += "\t]\n}"
+    out_file.write(out)
 
-def bnf_json(in_file,out_file):
-    file_cont = in_file.readlines()
-    out_file.write("{\n\t\"bnf\": [\n")
-    for line in file_cont:
-        if is_last(file_cont,line):    
-            json_str = ""
-            prod = []
-            prod = line.split(" ::= ")
-            if(prod[0] != '\n'):
-                json_str += "\t\t{\n"
-                json_str += "\t\t\t\"bnf_value\": \"{}\",\n".format(find_non_terminal(prod[0])) 
-                json_str += prod_rule(prod)
-                json_str += "\t\t}\n"
-                out_file.write(json_str)
-        else:
-            json_str = ""
-            prod = []
-            prod = line.split(" ::= ")
-            if(prod[0] != '\n'):
-                json_str += "\t\t{\n"
-                json_str += "\t\t\t\"bnf_value\": \"{}\",\n".format(find_non_terminal(prod[0])) 
-                json_str += prod_rule(prod)
-                json_str += "\t\t},\n"
-                out_file.write(json_str)
-    out_file.write("\t]\n}")
+if __name__ == '__main__':
+    in_file = open("bnf.txt","r")
+    out_file = open("bnf_test.json","w")
 
-in_file = open("bnf.txt","r")
-out_file = open("bnf.json","w")
-
-bnf_json(in_file,out_file)
-
-in_file.close()
-out_file.close()
+    bnf_json(get_rules(in_file),out_file)
