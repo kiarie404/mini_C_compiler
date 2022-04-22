@@ -83,7 +83,7 @@ def jsonify(nt,prod_list):
                 else:
                     string += "\t\t\t\t\t},\n"
             string += "\t\t\t\t],\n"
-        string += "\t\t\t]\n\t\t},\n"
+    string += "\t\t\t]\n\t\t},\n"
     return string
 
 def left(rules):
