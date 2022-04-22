@@ -1,1003 +1,945 @@
 {
 	"bnf": [
 		{
-			"bnf_value": "program",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "command_list"
-				}
-			]
-		},
-		{
-			"bnf_value": "command_list",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "command"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "command_list"
-				}
-			]
-		},
-		{
-			"bnf_value": "command_list",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "command"
-				}
-			]
-		},
-		{
-			"bnf_value": "command",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "variable_declaration"
-				}
-			]
-		},
-		{
-			"bnf_value": "command",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "function_definition"
-				}
-			]
-		},
-		{
-			"bnf_value": "variable_declaration",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "type_specifier"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "identifier"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "semi_colon_delimiter"
-				}
-			]
-		},
-		{
-			"bnf_value": "variable_declaration",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "type_specifier"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "identifier"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "assignment_operator"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "expression"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "semi_colon_delimiter"
-				}
-			]
-		},
-		{
-			"bnf_value": "identifier",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "constant_identifier"
-				}
-			]
-		},
-		{
-			"bnf_value": "type_specifier",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "key_word_void"
-				}
-			]
-		},
-		{
-			"bnf_value": "type_specifier",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "key_word_bool"
-				}
-			]
-		},
-		{
-			"bnf_value": "type_specifier",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "key_word_int"
-				}
-			]
-		},
-		{
-			"bnf_value": "type_specifier",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "key_word_float"
-				}
-			]
-		},
-		{
-			"bnf_value": "function_definition",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "type_specifier"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "identifier"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "left_rounded_bracket"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "function_parameters"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "right_rounded_bracket"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "compound_statement"
-				}
-			]
-		},
-		{
-			"bnf_value": "function_definition",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "type_specifier"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "identifier"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "left_rounded_bracket"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "right_rounded_bracket"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "compound_statement"
-				}
-			]
-		},
-		{
-			"bnf_value": "function_parameters",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "parameter_list"
-				}
-			]
-		},
-		{
-			"bnf_value": "parameter_list",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "parameter"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "comma_delimiter"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "parameter_list"
-				}
-			]
-		},
-		{
-			"bnf_value": "parameter_list",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "parameter"
-				}
-			]
-		},
-		{
-			"bnf_value": "parameter",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "type_specifier"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "identifier"
-				}
-			]
-		},
-		{
-			"bnf_value": "stmt_list",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "stmt"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "stmt_list"
-				}
-			]
-		},
-		{
-			"bnf_value": "stmt_list",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "stmt"
-				}
-			]
-		},
-		{
-			"bnf_value": "stmt",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "if_else_variant_stmt"
-				}
-			]
-		},
-		{
-			"bnf_value": "stmt",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "non_if_else_variant_stmt"
-				}
-			]
-		},
-		{
-			"bnf_value": "non_if_else_variant_stmt",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "expression_statement"
-				}
-			]
-		},
-		{
-			"bnf_value": "non_if_else_variant_stmt",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "compound_statement"
-				}
-			]
-		},
-		{
-			"bnf_value": "non_if_else_variant_stmt",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "iteration_statement"
-				}
-			]
-		},
-		{
-			"bnf_value": "non_if_else_variant_stmt",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "jump_statement"
-				}
-			]
-		},
-		{
-			"bnf_value": "non_if_else_variant_stmt",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "local_decls"
-				}
-			]
-		},
-		{
-			"bnf_value": "expression_statement",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "expression"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "semi_colon_delimiter"
-				}
-			]
-		},
-		{
-			"bnf_value": "expression_statement",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "semi_colon_delimiter"
-				}
-			]
-		},
-		{
-			"bnf_value": "iteration_statement",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "key_word_while"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "left_rounded_bracket"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "boolean_expression"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "right_rounded_bracket"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "compound_statement"
-				}
-			]
-		},
-		{
-			"bnf_value": "compound_statement",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "left_curly_bracket"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "stmt_list"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "right_curly_bracket"
-				}
-			]
-		},
-		{
-			"bnf_value": "local_decls",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "local_decl"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "local_decls"
-				}
-			]
-		},
-		{
-			"bnf_value": "local_decls",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "local_decl"
-				}
-			]
-		},
-		{
-			"bnf_value": "local_decl",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "type_specifier"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "identifier"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "semi_colon_delimiter"
-				}
-			]
-		},
-		{
-			"bnf_value": "local_decl",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "type_specifier"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "identifier"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "assignment_operator"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "expression"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "semi_colon_delimiter"
-				}
-			]
-		},
-		{
-			"bnf_value": "jump_statement",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "return_stmt"
-				}
-			]
-		},
-		{
-			"bnf_value": "jump_statement",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "break_stmt"
-				}
-			]
-		},
-		{
-			"bnf_value": "return_stmt",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "key_word_return"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "semi_colon_delimiter"
-				}
-			]
-		},
-		{
-			"bnf_value": "return_stmt",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "key_word_return"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "expression"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "semi_colon_delimiter"
-				}
-			]
-		},
-		{
-			"bnf_value": "break_stmt",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "key_word_break"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "semi_colon_delimiter"
-				}
-			]
-		},
-		{
-			"bnf_value": "if_else_variant_stmt",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "key_word_if"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "left_rounded_bracket"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "boolean_expression"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "right_rounded_bracket"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "compound_statement"
-				}
-			]
-		},
-		{
-			"bnf_value": "if_else_variant_stmt",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "key_word_if"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "left_rounded_bracket"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "boolean_expression"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "right_rounded_bracket"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "compound_statement"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "key_word_else"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "compound_statement"
-				}
-			]
-		},
-		{
-			"bnf_value": "expression",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "arithmetic_expression"
-				}
-			]
-		},
-		{
-			"bnf_value": "expression",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "boolean_expression"
-				}
-			]
-		},
-		{
-			"bnf_value": "boolean_expression",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "relational_boolean_expression"
-				}
-			]
-		},
-		{
-			"bnf_value": "boolean_expression",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "logical_boolean_expression"
-				}
-			]
-		},
-		{
-			"bnf_value": "arithmetic_expression",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "identifier"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "assignment_operator"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "arithmetic_expression"
-				}
-			]
-		},
-		{
-			"bnf_value": "arithmetic_expression",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "meta_term"
-				}
-			]
-		},
-		{
-			"bnf_value": "meta_term",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "meta_term"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "addition_operator"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "term"
-				}
-			]
-		},
-		{
-			"bnf_value": "meta_term",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "meta_term"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "subtraction_operator"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "term"
-				}
-			]
-		},
-		{
-			"bnf_value": "meta_term",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "term"
-				}
-			]
-		},
-		{
-			"bnf_value": "term",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "term"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "multiplication_operator"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "factor"
-				}
-			]
-		},
-		{
-			"bnf_value": "term",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "term"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "division_operator"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "factor"
-				}
-			]
-		},
-		{
-			"bnf_value": "term",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "term"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "modulus_operator"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "factor"
-				}
-			]
-		},
-		{
-			"bnf_value": "term",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "factor"
-				}
-			]
-		},
-		{
-			"bnf_value": "factor",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "right_rounded_bracket"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "arithmetic_expression"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "left_rounded_bracket"
-				}
-			]
-		},
-		{
-			"bnf_value": "factor",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "subtraction_operator"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "factor"
-				}
-			]
-		},
-		{
-			"bnf_value": "factor",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "addition_operator"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "factor"
-				}
-			]
-		},
-		{
-			"bnf_value": "factor",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "identifier"
-				}
-			]
-		},
-		{
-			"bnf_value": "factor",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "number"
-				}
-			]
-		},
-		{
-			"bnf_value": "number",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "constant_int"
-				}
-			]
-		},
-		{
-			"bnf_value": "number",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "constant_float"
-				}
-			]
-		},
-		{
-			"bnf_value": "relational_boolean_expression",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "arithmetic_expression"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "comparison_sign"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "arithmetic_expression"
-				}
-			]
-		},
-		{
-			"bnf_value": "comparison_sign",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "less_than_sign"
-				}
-			]
-		},
-		{
-			"bnf_value": "comparison_sign",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "greater_than_sign"
-				}
-			]
-		},
-		{
-			"bnf_value": "comparison_sign",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "equivalent_to_sign"
-				}
-			]
-		},
-		{
-			"bnf_value": "comparison_sign",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "inequivalent_to_sign"
-				}
-			]
-		},
-		{
-			"bnf_value": "comparison_sign",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "greater_than_or_equal_to_sign"
-				}
-			]
-		},
-		{
-			"bnf_value": "comparison_sign",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "less_than_or_equal_to_sign"
-				}
-			]
-		},
-		{
-			"bnf_value": "logical_boolean_expression",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "identifier"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "assignment_operator"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "logical_boolean_expression"
-				}
-			]
-		},
-		{
-			"bnf_value": "logical_boolean_expression",
-			"productions": [
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "intermediate_logic_term"
-				}
-			]
-		},
-		{
-			"bnf_value": "intermediate_logic_term",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "left_rounded_bracket"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "basic_logic_term"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "logical_sign"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "basic_logic_term"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "right_rounded_bracket"
-				}
-			]
-		},
-		{
-			"bnf_value": "basic_logic_term",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "left_rounded_bracket"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "relational_boolean_expression"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "right_rounded_bracket"
-				}
-			]
-		},
-		{
-			"bnf_value": "basic_logic_term",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "logical_NOT_sign"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "left_rounded_bracket"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "relational_boolean_expression"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "right_rounded_bracket"
-				}
-			]
-		},
-		{
-			"bnf_value": "basic_logic_term",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "constant_bool"
-				}
-			]
-		},
-		{
-			"bnf_value": "basic_logic_term",
-			"productions": [
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "left_rounded_bracket"
-				},
-				{
-					"bnf_type": "non_terminal",
-					"bnf_value": "intermediate_logic_term"
-				},
-				{
-					"bnf_type": "terminal",
-					"bnf_value": "right_rounded_bracket"
-				}
+			"token_value": "program",
+			"productions": [
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "command_list"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "command_list",
+			"productions": [
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "command"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "command_list"
+					}
+				],
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "command"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "command",
+			"productions": [
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "variable_declaration"
+					}
+				],
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "function_definition"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "variable_declaration",
+			"productions": [
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "type_specifier"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "identifier"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "semi_colon_delimiter"
+					}
+				],
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "type_specifier"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "identifier"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "assignment_operator"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "expression"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "semi_colon_delimiter"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "identifier",
+			"productions": [
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "constant_identifier"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "type_specifier",
+			"productions": [
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "key_word_void"
+					}
+				],
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "key_word_bool"
+					}
+				],
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "key_word_int"
+					}
+				],
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "key_word_float"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "function_definition",
+			"productions": [
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "type_specifier"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "identifier"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "left_rounded_bracket"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "function_parameters"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "right_rounded_bracket"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "compound_statement"
+					}
+				],
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "type_specifier"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "identifier"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "left_rounded_bracket"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "right_rounded_bracket"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "compound_statement"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "function_parameters",
+			"productions": [
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "parameter_list"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "parameter_list",
+			"productions": [
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "parameter"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "comma_delimiter"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "parameter_list"
+					}
+				],
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "parameter"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "parameter",
+			"productions": [
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "type_specifier"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "identifier"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "stmt_list",
+			"productions": [
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "stmt"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "stmt_list"
+					}
+				],
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "stmt"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "stmt",
+			"productions": [
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "if_else_variant_stmt"
+					}
+				],
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "non_if_else_variant_stmt"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "non_if_else_variant_stmt",
+			"productions": [
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "expression_statement"
+					}
+				],
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "compound_statement"
+					}
+				],
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "iteration_statement"
+					}
+				],
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "jump_statement"
+					}
+				],
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "local_decls"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "expression_statement",
+			"productions": [
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "expression"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "semi_colon_delimiter"
+					}
+				],
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "semi_colon_delimiter"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "iteration_statement",
+			"productions": [
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "key_word_while"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "left_rounded_bracket"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "boolean_expression"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "right_rounded_bracket"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "compound_statement"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "compound_statement",
+			"productions": [
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "left_curly_bracket"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "stmt_list"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "right_curly_bracket"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "local_decls",
+			"productions": [
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "local_decl"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "local_decls"
+					}
+				],
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "local_decl"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "local_decl",
+			"productions": [
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "type_specifier"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "identifier"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "semi_colon_delimiter"
+					}
+				],
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "type_specifier"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "identifier"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "assignment_operator"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "expression"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "semi_colon_delimiter"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "jump_statement",
+			"productions": [
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "return_stmt"
+					}
+				],
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "break_stmt"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "return_stmt",
+			"productions": [
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "key_word_return"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "semi_colon_delimiter"
+					}
+				],
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "key_word_return"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "expression"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "semi_colon_delimiter"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "break_stmt",
+			"productions": [
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "key_word_break"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "semi_colon_delimiter"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "if_else_variant_stmt",
+			"productions": [
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "key_word_if"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "left_rounded_bracket"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "boolean_expression"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "right_rounded_bracket"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "compound_statement"
+					}
+				],
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "key_word_if"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "left_rounded_bracket"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "boolean_expression"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "right_rounded_bracket"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "compound_statement"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "key_word_else"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "compound_statement"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "expression",
+			"productions": [
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "arithmetic_expression"
+					}
+				],
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "boolean_expression"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "boolean_expression",
+			"productions": [
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "relational_boolean_expression"
+					}
+				],
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "logical_boolean_expression"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "arithmetic_expression",
+			"productions": [
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "identifier"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "assignment_operator"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "arithmetic_expression"
+					}
+				],
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "meta_term"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "meta_term",
+			"productions": [
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "meta_term"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "addition_operator"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "term"
+					}
+				],
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "meta_term"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "subtraction_operator"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "term"
+					}
+				],
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "term"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "term",
+			"productions": [
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "term"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "multiplication_operator"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "factor"
+					}
+				],
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "term"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "division_operator"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "factor"
+					}
+				],
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "term"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "modulus_operator"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "factor"
+					}
+				],
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "factor"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "factor",
+			"productions": [
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "right_rounded_bracket"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "arithmetic_expression"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "left_rounded_bracket"
+					}
+				],
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "subtraction_operator"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "factor"
+					}
+				],
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "addition_operator"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "factor"
+					}
+				],
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "identifier"
+					}
+				],
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "number"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "number",
+			"productions": [
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "constant_int"
+					}
+				],
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "constant_float"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "relational_boolean_expression",
+			"productions": [
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "arithmetic_expression"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "comparison_sign"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "arithmetic_expression"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "comparison_sign",
+			"productions": [
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "less_than_sign"
+					}
+				],
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "greater_than_sign"
+					}
+				],
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "equivalent_to_sign"
+					}
+				],
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "inequivalent_to_sign"
+					}
+				],
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "greater_than_or_equal_to_sign"
+					}
+				],
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "less_than_or_equal_to_sign"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "logical_boolean_expression",
+			"productions": [
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "identifier"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "assignment_operator"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "logical_boolean_expression"
+					}
+				],
+				[
+					{
+						"token_type": "non_terminal",
+						"token_value": "intermediate_logic_term"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "intermediate_logic_term",
+			"productions": [
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "left_rounded_bracket"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "basic_logic_term"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "logical_sign"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "basic_logic_term"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "right_rounded_bracket"
+					}
+				]
+			]
+		},
+		{
+			"token_value": "basic_logic_term",
+			"productions": [
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "left_rounded_bracket"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "relational_boolean_expression"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "right_rounded_bracket"
+					}
+				],
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "logical_NOT_sign"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "left_rounded_bracket"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "relational_boolean_expression"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "right_rounded_bracket"
+					}
+				],
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "constant_bool"
+					}
+				],
+				[
+					{
+						"token_type": "terminal",
+						"token_value": "left_rounded_bracket"
+					},
+					{
+						"token_type": "non_terminal",
+						"token_value": "intermediate_logic_term"
+					},
+					{
+						"token_type": "terminal",
+						"token_value": "right_rounded_bracket"
+					}
+				]
 			]
 		}
 	]
