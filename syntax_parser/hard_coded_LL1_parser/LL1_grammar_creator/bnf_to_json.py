@@ -1,5 +1,7 @@
 from sly import Lexer
+import json
 
+# Removes '<' and '>' from a string
 def stringify_nt(nt):
     txt = ""
     for ch in nt:
@@ -7,24 +9,15 @@ def stringify_nt(nt):
             txt += ch
     return txt
 
-def is_last(arr,item):
-    if arr.index(item) == (len(arr) - 1):
-        return True
-    else:
-        return False
-
-def tok_type(val):
-    if val == "NON_TERMINAL":
-        return "non_terminal"
-    else:
-        return "terminal"
-
-def check(val,arr):
-    for item in arr:
-        if item == val:
+# Checks whether an item is in an array
+def check_arr(item,arr):
+    for val in arr:
+        if val == item:
             return True
     return False
 
+# Scans the input file and determines whether its contents are
+# terminals or non_terminals
 def get_rules(in_file):
     class CalcLexer(Lexer):
         tokens = { TERMINAL, NON_TERMINAL }
@@ -45,7 +38,9 @@ def get_rules(in_file):
         rules.append(rule)
     return rules
 
-def prod(val,rules):
+# Returns an array for productions associated with a
+# given non_terminal
+def productions(val,rules):
     arr_1 = []
     for rule in rules:
         arr_2 = []
@@ -57,57 +52,49 @@ def prod(val,rules):
                 arr_1.append(arr_2)
     return arr_1
 
-def jsonify(nt,prod_list):
-    string = ""
-    string += "\t\t{\n"
-    string += "\t\t\t\"token_value\": \"{}\",\n".format(stringify_nt(nt))
-    string += "\t\t\t\"productions\": [\n"
+# Returns a dictionary containing the productions
+# of a particular non_terminal
+def jsonify(non_terminal,prod_list):
+    main_dict = {
+        "token_value":"{}".format(stringify_nt(non_terminal)),
+        "productions": []
+    }
+    main_ls = []
     for prod in prod_list:
-        if is_last(prod_list,prod) and len(prod) != 0:
-            string += "\t\t\t\t[\n"
+        if len(prod) != 0:
+            sec_ls = []
             for item in prod:
-                string += "\t\t\t\t\t{\n\t\t\t\t\t\t\"token_type\": \"%s\",\n"%(tok_type(item["token_type"]))
-                string += "\t\t\t\t\t\t\"token_value\": \"%s\"\n"%(stringify_nt(item["token_value"]))
-                if is_last(prod,item):
-                    string += "\t\t\t\t\t}\n"
-                else:
-                    string += "\t\t\t\t\t},\n"
-            string += "\t\t\t\t]\n"
-        else:
-            string += "\t\t\t\t[\n"
-            for item in prod:
-                string += "\t\t\t\t\t{\n\t\t\t\t\t\t\"token_type\": \"%s\",\n"%(tok_type(item["token_type"]))
-                string += "\t\t\t\t\t\t\"token_value\": \"%s\"\n"%(stringify_nt(item["token_value"]))
-                if is_last(prod,item):
-                    string += "\t\t\t\t\t}\n"
-                else:
-                    string += "\t\t\t\t\t},\n"
-            string += "\t\t\t\t],\n"
-    string += "\t\t\t]\n\t\t},\n"
-    return string
+                sec_dict = {
+                    "token_type":"{}".format(item["token_type"].lower()),
+                    "token_value":"{}".format(stringify_nt(item["token_value"]))
+                }
+                sec_ls.append(sec_dict)
+            main_ls.append(sec_ls)
+    main_dict["productions"] = main_ls
+    return main_dict
 
-def left(rules):
-    txt = ""
+# Returns a list of dictionaries containing the rules
+# from the bnf
+def left_nt(rules):
     arr = []
-    lst = False
+    out_arr = []
     for rule in rules:
         if len(rule) != 0:
-            my_dict = rule[0]
-            if not check(my_dict["token_value"],arr):
-                arr.append(my_dict["token_value"])
-                prods = prod(my_dict["token_value"],rules)
-                txt += jsonify(my_dict["token_value"],prods)
-    return txt
+            non_terminal = rule[0]
+            if not check_arr(non_terminal["token_value"],arr):
+                arr.append(non_terminal["token_value"])
+                prod_list = productions(non_terminal["token_value"],rules)
+                out_arr.append(jsonify(non_terminal["token_value"],prod_list))
+    return out_arr
 
-def bnf_json(rules,out_file):
-    out = ""
-    out += "{\n\t\"bnf\": [\n"
-    out += left(rules)
-    out += "\t]\n}"
-    out_file.write(out)
+def bnf_to_json(in_file,out_file):
+    out = {"bnf": []}
+    out["bnf"] = left_nt(get_rules(in_file))
+    json_object = json.dumps(out,indent=4)
+    out_file.write(json_object)
 
 if __name__ == '__main__':
     in_file = open("bnf.txt","r")
-    out_file = open("bnf_test.json","w")
+    out_file = open("bnf.json","w")
 
-    bnf_json(get_rules(in_file),out_file)
+    bnf_to_json(in_file,out_file)
