@@ -64,9 +64,19 @@ class CalcLexer(Lexer):
         self.lineno += t.value.count('\n')
 
     def error(self, t):
-        print('Line %d: Bad character %r' % (self.lineno, t.value[0]))
         self.index += 1
         return t
+
+#  miscellaneous helper functions
+# Find a token's column position.
+#     input is the input text string
+#     token is a token instance
+def find_column(text, token):
+    last_cr = text.rfind('\n', 0, token.index)
+    if last_cr < 0:
+        last_cr = 0
+    column = (token.index - last_cr) + 1
+    return column
 
 if __name__ == '__main__':
     src_file = open("Test.c")
@@ -84,6 +94,13 @@ if __name__ == '__main__':
             token_struct = [token.type, token.value]
             line_struct.append(token_struct)
             out_file.write('<%r> --> %r\t' %(token.type, token.value)) # this is going to the .txt file
+
+            # we handle record the lexer Errors :
+            if (token.type == "ERROR"):
+                text = src_file.read()
+                token_column = find_column(text, token)
+                print("Grammatical Error in line ", line_index, " , column ", token_column, " ---> Character : ", token.value[0])
+
 
         # make the file pointer in the .txt output skip to a new line
         out_file.write("\n")
