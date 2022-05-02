@@ -9,6 +9,7 @@ Class TAC
 
 Class Quadruaple 
     #For Representing the Three Address code in a visualization typa way.
-    # Still finding out a way I can make it a pretty graphical table like the picture below 
+    # Still finding out a way I can make it a pretty graphical table like the picture below
     
-    ![Quad](https://user-images.githubusercontent.com/70433606/166177490-9810d2ae-3634-4f67-9412-d64f36ac4dc2.png)
+    
+![Quad](https://user-images.githubusercontent.com/70433606/166177699-f242e24a-069d-4f1c-94cb-4662dfa4b0d7.png)
